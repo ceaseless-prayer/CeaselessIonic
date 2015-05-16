@@ -15,6 +15,23 @@
     margin:0 auto;
 }
 
+/* Daily Card View style*/
+.daily-experience-home {
+    background-image:url(../img/at_the_beach.jpg);
+    background-size: cover;
+}
+
+.daily-card-container {
+    height: 100%;
+    padding: 8px;
+}
+
+.card-view {
+    height: 100%;
+    border-radius: 6px;
+    box-shadow: 3px 3px 3px 1px rgba(3,3,3,0.6);
+}
+
 /* Journal style */
 .journal {
     background-image:url(../img/at_the_beach.jpg);

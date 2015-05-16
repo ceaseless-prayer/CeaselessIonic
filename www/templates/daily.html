@@ -1,0 +1,17 @@
+<ion-view view-title="Ceaseless">
+  <ion-nav-title>
+    <img class="logo-main" src="img/ceaseless-dove-logo-main@2x.png">
+  </ion-nav-title>
+  <ion-nav-buttons side="right">
+    <button ng-click="openJournal()" class="button button-icon button-clear ion-ios-bookmarks-outline">
+    </button>
+  </ion-nav-buttons>
+  <ion-content class="daily-experience-home" scroll="false">
+    <blurred-image src="{{ backgroundImage }}" width="640" height="480" css-class="blurredImg"></blurred-image>
+    <ion-slide-box class="daily-card-container" on-slide-changed="slideHasChanged($index)">
+      <ion-slide ng-repeat="card in cards">
+        <div class="card-view">{{card.title}}</div>
+      </ion-slide>
+    </ion-slide-box>
+  </ion-content>
+</ion-view>

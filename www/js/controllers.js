@@ -34,18 +34,42 @@ angular.module('ceaseless.controllers', [])
 
 })
 
-.controller('PlaylistsCtrl', function($scope, $state) {
-  $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
-    $scope.openJournal = function () {
-      $state.go('app.journal');
+.controller('DailyCtrl', function($scope, $state, $ionicSlideBoxDelegate) {
+  $scope.cards = [
+    {
+      title: '1 Thessalonians 5:16-18',
+      id: 1,
+      content: 'Rejoice always, pray without ceasing, give thanks in all circumstances or this is God\'s will for you in Christ Jesus'
+    },
+    {
+      title: 'Natasha Lim',
+      id: 2,
+      content: 'Pray for her career'
+    },
+    {
+      title: 'Tiffany Lim',
+      id: 3,
+      content: 'Pray for her relationships'
+    },
+    {
+      title: 'SL',
+      id: 4,
+      content: 'Pray for her delight in God'
+    },
+    {
+      title: 'Progress',
+      id: 5,
+      content: '12/240'
     }
+  ];
+  $scope.slideHasChanged = function (index) {
+    console.log(index);
+  };
+
+  $scope.openJournal = function () {
+    $state.go('app.journal');
+  };
+  $scope.backgroundImage = '../img/at_the_beach.jpg';
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
