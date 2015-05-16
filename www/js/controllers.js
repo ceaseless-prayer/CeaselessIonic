@@ -39,27 +39,32 @@ angular.module('ceaseless.controllers', [])
     {
       title: '1 Thessalonians 5:16-18',
       id: 1,
-      content: 'Rejoice always, pray without ceasing, give thanks in all circumstances or this is God\'s will for you in Christ Jesus'
+      content: 'Rejoice always, pray without ceasing, give thanks in all circumstances or this is God\'s will for you in Christ Jesus',
+      template: 'templates/views/ScriptureCardView.html'
     },
     {
       title: 'Natasha Lim',
       id: 2,
-      content: 'Pray for her career'
+      content: 'Pray for her career',
+      template: 'templates/views/PersonCardView.html'
     },
     {
       title: 'Tiffany Lim',
       id: 3,
-      content: 'Pray for her relationships'
+      content: 'Pray for her relationships',
+      template: 'templates/views/PersonCardView.html'
     },
     {
       title: 'SL',
       id: 4,
-      content: 'Pray for her delight in God'
+      content: 'Pray for her delight in God',
+      template: 'templates/views/PersonCardView.html'
     },
     {
       title: 'Progress',
       id: 5,
-      content: '12/240'
+      content: '12/240',
+      template: 'templates/views/ProgressCardView.html'
     }
   ];
   $scope.slideHasChanged = function (index) {
@@ -67,8 +72,13 @@ angular.module('ceaseless.controllers', [])
   };
 
   $scope.openJournal = function () {
-    $state.go('app.journal');
+    $scope.transitioning = true;
+    $state.go('app.journal')
+      .then(function(current) {
+        $scope.transitioning = false;
+      });
   };
+
   background().blurred.then(function(src) {
     console.log('blur complete');
     $scope.blurredImage = src;

@@ -3,23 +3,13 @@
     <img class="logo-main" src="img/ceaseless-dove-logo-main@2x.png">
   </ion-nav-title>
   <ion-nav-buttons side="right">
-    <button on-touch="openJournal()" class="button button-icon button-clear ion-ios-bookmarks-outline">
-    </button>
+    <a ui-sref="app.journal" class="button button-icon button-clear ion-ios-bookmarks-outline">
+    </a>
   </ion-nav-buttons>
   <ion-content class="daily-experience-home" scroll="false">
-    <ion-slide-box class="daily-card-container" on-slide-changed="slideHasChanged($index)">
+    <ion-slide-box class="daily-card-container" ng-hide="transitioning" on-slide-changed="slideHasChanged($index)">
       <ion-slide class="card-view" ng-repeat="card in cards">
-        <div class="inner-card">
-          <div class="card-background">
-            blur<img style="height:200px" ng-src="{{blurredImage}}"/>
-            orig<img style="height:200px" ng-src="{{backgroundImage}}"/>
-          </div>
-          <div class="card-content">
-            <div>{{card.title}}</div> <!-- Name ... button-->
-            <div></div> <!-- photo? -->
-            <div></div> <!-- card? -->
-          </div>
-        </div>
+        <ng-include src="card.template"></ng-include>
       </ion-slide>
     </ion-slide-box>
   </ion-content>
