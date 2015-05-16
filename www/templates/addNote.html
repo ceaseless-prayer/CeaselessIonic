@@ -1,0 +1,22 @@
+<ion-modal-view>
+  <ion-header-bar class="ceaseless-bar-dark">
+    <div class="buttons">
+      <button class="button button-clear" ng-click="cancelNote()">Close</button>
+    </div>
+    <h1 class="title">{{now | date:'short'}}</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="saveNote()">Save</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <form>
+      <label class="item item-input">
+        <span class="input-label">Tag your friends</span>
+        <input type="text" ng-model="noteData.peopleTagged">
+      </label>
+      <div class="note-editor-container">
+        <textarea ng-model="noteData.contents"></textarea>
+      </div>
+    </form>
+  </ion-content>
+</ion-modal-view>

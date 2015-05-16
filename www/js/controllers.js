@@ -51,9 +51,31 @@ angular.module('ceaseless.controllers', [])
 .controller('PlaylistCtrl', function($scope, $stateParams) {
 })
 
-.controller('JournalCtrl', function($scope, $stateParams) {
-    $scope.rightMenuButton =
-    $scope.addNote = function () {
+.controller('JournalCtrl', function($scope, $ionicModal) {
+    $scope.now = new Date();
 
-    }
+    // Create the login modal that we will use later
+    $ionicModal.fromTemplateUrl('templates/addNote.html', {
+      scope: $scope
+    }).then(function(modal) {
+      $scope.modal = modal;
+    });
+
+    // Triggered in the login modal to close it
+    $scope.cancelNote = function() {
+      $scope.modal.hide();
+    };
+
+    // Open the login modal
+    $scope.addNote = function() {
+      $scope.modal.show();
+    };
+
+    // Perform the login action when the user submits the login form
+    $scope.saveNote = function() {
+      console.log('Saving note', $scope.noteData);
+
+      // save note here.
+    };
+
 });

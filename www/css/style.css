@@ -7,3 +7,12 @@
 .ceaseless-bar-dark h1 {
     color:white;
 }
+
+.note-editor-container {
+    padding: 3px;
+}
+
+.note-editor-container textarea {
+    width: 100vw;
+    height: 100vh;
+}
