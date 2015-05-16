@@ -80,8 +80,24 @@ angular.module('ceaseless.controllers', [])
 
     $scope.notes = [
       {
-        peopleTagged:['Chris','Who'],
+        peopleTagged:['Chris','Lim'],
         content: 'This is a note. When will God\'s grace come.'
+      },
+      {
+        peopleTagged:['Natasha','Lim'],
+        content: 'This is a note. When will God\'s grace come.'
+      },
+      {
+        peopleTagged:['Tiffany','Lim'],
+        content: 'This is a note. When will God\'s grace come.'
+      },
+      {
+        peopleTagged:['S','L'],
+        content: 'This is a note. When will God\'s grace come.'
+      },
+      {
+        peopleTagged:['Please','Thank you'],
+        content: 'Why are you afraid?'
       },
       {
         peopleTagged:['Again','And Again'],
@@ -92,5 +108,10 @@ angular.module('ceaseless.controllers', [])
     $scope.noteData = {
       contents: 'This is a test note'
     };
+
+    // list management
+    $scope.shouldShowDelete = false;
+    $scope.shouldShowReorder = false;
+    $scope.listCanSwipe = true
 
 });

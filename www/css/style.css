@@ -1,6 +1,7 @@
 /* Empty. Add your own CSS if you like */
 .ceaseless-bar-dark {
     background-color:#00012f;
+    border-bottom-color: #020331;
     color: white;
 }
 
@@ -10,9 +11,37 @@
 
 .logo-main {
     vertical-align:middle;
+    max-width: 120px;
+    margin:0 auto;
+}
+
+/* Journal style */
+.journal {
+    background-image:url(../img/at_the_beach.jpg);
+    background-size: cover;
 }
 
 /* Dealing with notes */
+
+.list .note-item {
+    border-radius:6px;
+    margin: 6px;
+}
+
+.list .note-item, .note-item .item-content {
+    border-style: none;
+    background-color:rgba(0,1,47,0.6);
+}
+
+.note-item .item-content.activated {
+    border-style: none;
+    background-color: rgba(20, 21, 67, 0.6);
+}
+
+.note-item .item-content h2, .note-item .item-content p {
+    color: white;
+}
+
 .note-view-container {
     min-height: 400px;
 }
