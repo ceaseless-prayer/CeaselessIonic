@@ -17,7 +17,7 @@ angular.module('ceaseless.controllers')
     };
 
     background().blurred.then(function(src) {
-      console.log('blur complete');
+      $scope.backgroundImage = src;
       $scope.blurredImage = src;
     });
     $scope.backgroundImage = background().original;

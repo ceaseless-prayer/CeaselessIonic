@@ -1,4 +1,4 @@
-<ion-view view-title="Ceaseless">
+<ion-view view-title="Ceaseless" class="daily-experience-home">
   <ion-nav-title>
     <img class="logo-main" src="img/ceaseless-dove-logo-main@2x.png">
   </ion-nav-title>
@@ -6,7 +6,7 @@
     <a href="#/app/browse" class="button button-icon button-clear ion-ios-bookmarks-outline">
     </a>
   </ion-nav-buttons>
-  <ion-content class="daily-experience-home" scroll="false">
+  <ion-content scroll="false">
     <ion-slide-box class="daily-card-container" ng-hide="transitioning" on-slide-changed="slideHasChanged($index)">
       <ion-slide class="card-view" ng-repeat="card in cards">
         <ng-include src="card.template"></ng-include>

@@ -24,6 +24,7 @@ angular.module('ceaseless.services', [])
     img.onload = function () {
       context.drawImage(img, 0, 0, config.w, config.h);
       boxBlurCanvasRGBA(canvasId, 0, 0, config.w, config.h, 10, 2);
+      console.log('blur complete');
       deferred.resolve(canvas.toDataURL());
     };
     img.crossOrigin = '';

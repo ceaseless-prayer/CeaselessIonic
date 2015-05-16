@@ -33,7 +33,6 @@ angular.module('ceaseless.controllers', [])
   };
 
   background().blurred.then(function(src) {
-    console.log('blur complete');
     $scope.blurredImage = src;
     $scope.backgroundImage = src;
   });
@@ -87,7 +86,7 @@ angular.module('ceaseless.controllers', [])
   };
 
   background().blurred.then(function(src) {
-    console.log('blur complete');
+    $scope.backgroundImage = src;
     $scope.blurredImage = src;
   });
   $scope.backgroundImage = background().original;
@@ -96,9 +95,13 @@ angular.module('ceaseless.controllers', [])
 .controller('PlaylistCtrl', function($scope, $stateParams) {
 })
 
-.controller('JournalCtrl', function($scope, $ionicModal) {
+.controller('JournalCtrl', function($scope, $ionicModal, background) {
     $scope.now = new Date();
-
+    background().blurred.then(function(src) {
+      console.log('blur complete');
+      $scope.blurredImage = src;
+    });
+    $scope.backgroundImage = background().original;
     // Create the note editor modal that we will use later
     $ionicModal.fromTemplateUrl('templates/addNote.html', {
       scope: $scope

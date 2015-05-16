@@ -1,4 +1,8 @@
-/* Empty. Add your own CSS if you like */
+/* App level CSS */
+[nav-view-transition][nav-view-direction] {
+    background-color: transparent;
+}
+
 .ceaseless-bar-dark {
     background-color:#00012f;
     border-bottom-color: #020331;
@@ -33,8 +37,7 @@
 
 /* Daily Card View style*/
 .daily-experience-home {
-    background-image:url(../img/at_the_beach.jpg);
-    background-size: cover;
+    background-color: transparent;
 }
 
 .daily-card-container {
@@ -68,8 +71,7 @@
 
 /* Journal style */
 .journal {
-    background-image:url(../img/at_the_beach.jpg);
-    background-size: cover;
+    background-color: transparent;
 }
 
 /* Dealing with notes */
