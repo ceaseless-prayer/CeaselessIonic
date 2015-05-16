@@ -19,21 +19,12 @@
 
 .note-body {
     padding: 6px;
+    width: 100%;
 }
 
 .note-body-container {
     top: 90px; /* a fixed calculation */
 }
-
-/* unused? */
-.note-editor-container textarea {
-    width: 100%;
-    height: ;ght: 100%;
-}
-/*
-*[contenteditable] {
-    -webkit-user-select: text !important;
-} */
 
 .people-tagger {
     width: 100%;
