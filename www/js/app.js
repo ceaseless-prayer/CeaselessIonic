@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('ceaseless', ['ionic', 'ceaseless.controllers', 'ceaseless.services', 'ios7login'])
+angular.module('ceaseless', ['ionic', 'ceaseless.controllers', 'ceaseless.services', 'ios7login', 'QuickList'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {

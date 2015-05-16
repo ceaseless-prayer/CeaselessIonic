@@ -8,7 +8,7 @@
               show-delete="shouldShowDelete"
               show-reorder="shouldShowReorder"
               can-swipe="listCanSwipe">
-      <ion-item ng-repeat="note in notes"
+      <ion-item quick-ng-repeat="note in notes" quick-repeat-list="notes"
                 class="note-item item-thumbnail-left" href="#/app/playlists/{{playlist.id}}">
 
         <img ng-src="{{note.img}}">
