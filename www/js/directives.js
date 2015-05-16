@@ -1,3 +1,5 @@
+// blur effect directive from:
+// https://veamospues.wordpress.com/2013/10/13/angularjs-blurred-image-directive/
 var ios7login = angular.module('ios7login', []);
 
 ios7login.controller('srcManager', ['$scope', function($scope){
@@ -35,11 +37,17 @@ ios7login.directive('blurredImage', function(){
         img.onload = function(){
           context.drawImage(img, 0, 0, scope.width, scope.height); // draw the image at the given location
           boxBlurCanvasRGBA( scope.itemId, 0, 0, scope.width, scope.height, 34, 2);
+          //setupElementBackgroundImage()
         };
 
         img.crossOrigin = '';
-        img.src = scope.src
+        img.src = scope.src;
 
+        function setupElementBackgroundImage() {
+          var imageDataURL = element[0].toDataURL();
+          document.body.style.background =
+            "transparent url('"+imageDataURL+"') repeat";
+        }
       }
 
       scope.$watch('src', function(){
