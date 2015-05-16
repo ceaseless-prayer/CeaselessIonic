@@ -17,13 +17,13 @@ angular.module('ceaseless.services', [])
       y:0,
       h:200,
       w:200,
-      src: '../img/at_the_beach.jpg'
+      src: 'img/at_the_beach.jpg'
     };
     var deferred = $q.defer();
 
     img.onload = function () {
       context.drawImage(img, 0, 0, config.w, config.h);
-      boxBlurCanvasRGBA(canvasId, 0, 0, config.w, config.h, 10, 1);
+      boxBlurCanvasRGBA(canvasId, 0, 0, config.w, config.h, 10, 2);
       deferred.resolve(canvas.toDataURL());
     };
     img.crossOrigin = '';

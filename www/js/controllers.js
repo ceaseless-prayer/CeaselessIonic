@@ -123,14 +123,14 @@ angular.module('ceaseless.controllers', [])
         peopleTagged:['S','L'],
         content: 'This is a note. When will God\'s grace come.'
       },
-      {
+      /*{
         peopleTagged:['Please','Thank you'],
         content: 'Why are you afraid?'
       },
       {
         peopleTagged:['Again','And Again'],
         content: 'Why are you afraid?'
-      }
+      }   */
     ];
 
     $scope.noteData = {
