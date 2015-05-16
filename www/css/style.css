@@ -9,6 +9,22 @@
     color:white;
 }
 
+.ceaseless-menu-dark {
+    color: white;
+    background: rgba(0, 1, 47, 0.6) no-repeat;
+    background-size: cover;
+}
+
+.ceaseless-menu-dark .item, .ceaseless-menu-dark a.item-content {
+    background-color:rgba(0,1,47,0.6);
+    color: white;
+}
+
+.ceaseless-menu-dark a.item-content.activated {
+    border-style: none;
+    background-color: rgba(20, 21, 67, 0.6);
+}
+
 .logo-main {
     vertical-align:middle;
     max-width: 120px;

@@ -1,6 +1,6 @@
 angular.module('ceaseless.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, background) {
   // Form data for the login modal
   $scope.loginData = {};
 
@@ -31,6 +31,13 @@ angular.module('ceaseless.controllers', [])
       $scope.closeLogin();
     }, 1000);
   };
+
+  background().blurred.then(function(src) {
+    console.log('blur complete');
+    $scope.blurredImage = src;
+    $scope.backgroundImage = src;
+  });
+  $scope.backgroundImage = background().original;
 
 })
 
