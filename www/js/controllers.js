@@ -150,6 +150,6 @@ angular.module('ceaseless.controllers', [])
     // list management
     $scope.shouldShowDelete = false;
     $scope.shouldShowReorder = false;
-    $scope.listCanSwipe = true
+    $scope.listCanSwipe = false;
 
 });

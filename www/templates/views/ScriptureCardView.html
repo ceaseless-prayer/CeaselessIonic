@@ -1,9 +1,11 @@
 <div class="inner-card" ng-controller="ScriptureCardController">
-  <!-- top image -->
-  <img src="{{blurredImage}}"/>
-
   <!-- inverted blurred image -->
-
+  <fa-app style="height: 200px">
+    <fa-surface>
+      <fa-image-surface fa-image-url="{{blurredImage}}">
+      </fa-image-surface>
+    </fa-surface>
+  </fa-app>
  <!-- scripture text -->
 
   <div class="card-content">

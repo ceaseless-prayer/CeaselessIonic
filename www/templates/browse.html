@@ -1,5 +1,37 @@
-<ion-view view-title="Browse">
-  <ion-content>
-    <h1>Browse</h1>
+<ion-view view-title="Prayer Journal" class="journal">
+  <ion-nav-buttons side="right">
+    <button class="button button-icon button-clear ion-android-search">
+    </button>
+    <button ng-click="addNote()" class="button button-icon button-clear ion-android-add">
+    </button>
+  </ion-nav-buttons>
+  <ion-content has-bouncing="true">
+    <ion-list class="note-list list-inset"
+              show-delete="shouldShowDelete"
+              show-reorder="shouldShowReorder"
+              can-swipe="listCanSwipe">
+      <ion-item quick-ng-repeat="note in notes" quick-repeat-list="notes"
+                class="note-item item-thumbnail-left" href="#/app/playlists/{{playlist.id}}">
+
+        <img ng-src="{{note.img}}">
+        <h2>{{note.content}}</h2>
+        <p>{{note.peopleTagged}}</p>
+        <ion-option-button class="button-positive"
+                           ng-click="share(note)">
+          Share
+        </ion-option-button>
+        <ion-option-button class="button-info"
+                           ng-click="edit(note)">
+          Edit
+        </ion-option-button>
+        <ion-delete-button class="ion-minus-circled"
+                           ng-click="notes.splice($index, 1)">
+        </ion-delete-button>
+        <ion-reorder-button class="ion-navicon"
+                            on-reorder="reorderItem(item, $fromIndex, $toIndex)">
+        </ion-reorder-button>
+
+      </ion-item>
+    </ion-list>
   </ion-content>
 </ion-view>
