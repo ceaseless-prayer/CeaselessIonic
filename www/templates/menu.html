@@ -1,5 +1,5 @@
 <ion-side-menus enable-menu-with-back-views="false">
-  <ion-side-menu-content>
+  <ion-side-menu-content style="background-image:url('{{backgroundImage}}'); background-repeat:no-repeat; background-size:cover;">
     <ion-nav-bar class="ceaseless-bar-dark">
       <ion-nav-back-button>
       </ion-nav-back-button>
@@ -9,9 +9,10 @@
         </button>
       </ion-nav-buttons>
     </ion-nav-bar>
-    <ion-nav-view style="background-image:url('img/at_the_beach.jpg'); background-repeat:no-repeat; background-size:cover;" name="menuContent" ></ion-nav-view>
+    <ion-nav-view name="menuContent">
+    </ion-nav-view>
   </ion-side-menu-content>
-  <ion-side-menu side=""right">
+  <ion-side-menu side="right">
 
   </ion-side-menu>
   <ion-side-menu side="left" style="background-image:url('{{backgroundImage}}'); background-repeat:no-repeat" class="ceaseless-menu-dark">

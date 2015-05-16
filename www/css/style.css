@@ -3,6 +3,10 @@
     background-color: transparent;
 }
 
+ion-side-menu.ceaseless-side-menu {
+
+}
+
 .ceaseless-bar-dark {
     background-color:#00012f;
     border-bottom-color: #020331;
@@ -54,7 +58,7 @@
 .inner-card {
     border-radius: 6px;
     background-color:rgba(0,0,0,0.3);
-    /*box-shadow: 3px 3px 3px 1px rgba(3,3,3,0.6);*/
+    box-shadow: 3px 3px 3px 1px rgba(3,3,3,0.6);
 }
 
 .shadow-card {

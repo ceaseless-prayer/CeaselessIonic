@@ -37,7 +37,6 @@ angular.module('ceaseless.controllers', [])
     $scope.backgroundImage = src;
   });
   $scope.backgroundImage = background().original;
-
 })
 
 .controller('DailyCtrl', function($scope, $state, background, $ionicSlideBoxDelegate) {
