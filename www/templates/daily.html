@@ -11,7 +11,8 @@
       <ion-slide class="card-view" ng-repeat="card in cards">
         <div class="inner-card">
           <div class="card-background">
-            <blurred-image src="{{ backgroundImage }}" width="200" height="200" class="blurredImg"></blurred-image>
+            blur<img style="height:200px" ng-src="{{blurredImage}}"/>
+            orig<img style="height:200px" ng-src="{{backgroundImage}}"/>
           </div>
           <div class="card-content">
             <div>{{card.title}}</div> <!-- Name ... button-->

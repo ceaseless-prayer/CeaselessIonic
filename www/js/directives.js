@@ -32,12 +32,12 @@ ios7login.directive('blurredImage', function(){
           return;
 
         var context = element[0].getContext("2d"); // get the 2d context object
-        var img     = new Image() //create a new image
+        var img     = new Image(); //create a new image
 
         img.onload = function(){
           context.drawImage(img, 0, 0, scope.width, scope.height); // draw the image at the given location
           boxBlurCanvasRGBA( scope.itemId, 0, 0, scope.width, scope.height, 34, 2);
-          //setupElementBackgroundImage()
+          setupElementBackgroundImage();
         };
 
         img.crossOrigin = '';
@@ -45,8 +45,8 @@ ios7login.directive('blurredImage', function(){
 
         function setupElementBackgroundImage() {
           var imageDataURL = element[0].toDataURL();
-          document.body.style.background =
-            "transparent url('"+imageDataURL+"') repeat";
+          element[0].parentElement.parentElement.style.backgroundImage =
+            "url('"+imageDataURL+"')";
         }
       }
 

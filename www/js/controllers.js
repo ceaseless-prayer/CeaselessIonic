@@ -34,7 +34,7 @@ angular.module('ceaseless.controllers', [])
 
 })
 
-.controller('DailyCtrl', function($scope, $state, $ionicSlideBoxDelegate) {
+.controller('DailyCtrl', function($scope, $state, background, $ionicSlideBoxDelegate) {
   $scope.cards = [
     {
       title: '1 Thessalonians 5:16-18',
@@ -69,7 +69,11 @@ angular.module('ceaseless.controllers', [])
   $scope.openJournal = function () {
     $state.go('app.journal');
   };
-  $scope.backgroundImage = '../img/at_the_beach.jpg';
+  background().blurred.then(function(src) {
+    console.log('blur complete');
+    $scope.blurredImage = src;
+  });
+  $scope.backgroundImage = background().original;
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
