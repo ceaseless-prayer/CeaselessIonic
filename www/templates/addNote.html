@@ -8,15 +8,39 @@
       <button class="button button-clear" ng-click="saveNote()">Save</button>
     </div>
   </ion-header-bar>
-  <ion-content>
-    <form>
-      <label class="item item-input">
-        <span class="input-label">Tag your friends</span>
-        <input type="text" ng-model="noteData.peopleTagged">
-      </label>
-      <div class="note-editor-container">
-        <textarea ng-model="noteData.contents"></textarea>
-      </div>
-    </form>
+  <ion-content scroll="false">
+    <label class="item item-input">
+      <input class="people-tagger" type="text" placeholder="Tag your friends" ng-model="noteData.peopleTagged">
+    </label>
   </ion-content>
+  <ion-content class="note-body-container">
+    <div class="table note-view-container">
+      <div class="table-row">
+        <div class="table-cell body-content-outer-wrapper">
+          <div class="body-content-inner-wrapper">
+            <textarea class="body-content note-body">{{noteData.contents}}</textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+  <!--
+  <ion-content scroll="false">
+    <div class="table note-view-container">
+      <div class="table-row">
+        <label class="item item-input">
+          <input class="people-tagger" type="text" placeholder="Tag your friends" ng-model="noteData.peopleTagged">
+        </label>
+      </div>
+      <div class="table-row">
+        <div class="table-cell body-content-outer-wrapper">
+          <div class="body-content-inner-wrapper">
+            <textarea class="body-content note-body">
+              {{noteData.contents}}
+            </textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-content>-->
 </ion-modal-view>

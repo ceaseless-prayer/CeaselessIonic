@@ -54,7 +54,7 @@ angular.module('ceaseless.controllers', [])
 .controller('JournalCtrl', function($scope, $ionicModal) {
     $scope.now = new Date();
 
-    // Create the login modal that we will use later
+    // Create the note editor modal that we will use later
     $ionicModal.fromTemplateUrl('templates/addNote.html', {
       scope: $scope
     }).then(function(modal) {
@@ -76,6 +76,21 @@ angular.module('ceaseless.controllers', [])
       console.log('Saving note', $scope.noteData);
 
       // save note here.
+    };
+
+    $scope.notes = [
+      {
+        peopleTagged:['Chris','Who'],
+        content: 'This is a note. When will God\'s grace come.'
+      },
+      {
+        peopleTagged:['Again','And Again'],
+        content: 'Why are you afraid?'
+      }
+    ];
+
+    $scope.noteData = {
+      contents: 'This is a test note'
     };
 
 });
