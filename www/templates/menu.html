@@ -9,7 +9,7 @@
         </button>
       </ion-nav-buttons>
       <ion-nav-buttons side="right">
-        <button class="button button-icon button-clear ion-ios-bookmarks-outline">
+        <button class="button button-icon button-clear ion-ios-bookmarks-outline" ng-click="openJournal()">
         </button>
       </ion-nav-buttons>
 
@@ -18,11 +18,32 @@
   </ion-side-menu-content>
 
   <ion-side-menu side="left">
-    <ion-header-bar class="bar-stable">
-      <h1 class="title">Left</h1>
+    <ion-header-bar class="ceaseless-bar-dark">
+      <h1 class="title">Menu</h1>
     </ion-header-bar>
     <ion-content>
       <ion-list>
+        <ion-item menu-close>
+          People
+        </ion-item>
+        <ion-item menu-close>
+          Settings
+        </ion-item>
+        <ion-item menu-close>
+          Help
+        </ion-item>
+        <ion-item menu-close>
+          Contact Us
+        </ion-item>
+        <ion-item menu-close>
+          About
+        </ion-item>
+        <ion-item menu-close>
+          Review Ceaseless
+        </ion-item>
+        <ion-item menu-close>
+          Subscribe to Newsletter
+        </ion-item>
         <ion-item menu-close ng-click="login()">
           Login
         </ion-item>

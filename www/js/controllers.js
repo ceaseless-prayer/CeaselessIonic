@@ -1,6 +1,6 @@
 angular.module('ceaseless.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+.controller('AppCtrl', function($scope, $ionicModal, $timeout, $state) {
   // Form data for the login modal
   $scope.loginData = {};
 
@@ -31,6 +31,10 @@ angular.module('ceaseless.controllers', [])
       $scope.closeLogin();
     }, 1000);
   };
+
+  $scope.openJournal = function () {
+    $state.go('app.journal');
+  }
 })
 
 .controller('PlaylistsCtrl', function($scope) {
@@ -42,7 +46,11 @@ angular.module('ceaseless.controllers', [])
     { title: 'Rap', id: 5 },
     { title: 'Cowbell', id: 6 }
   ];
+
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
+})
+
+.controller('JournalCtrl', function($scope, $stateParams) {
 });

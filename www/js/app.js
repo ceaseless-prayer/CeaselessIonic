@@ -47,15 +47,26 @@ angular.module('ceaseless', ['ionic', 'ceaseless.controllers'])
       }
     }
   })
-    .state('app.playlists', {
-      url: "/playlists",
-      views: {
-        'menuContent': {
-          templateUrl: "templates/playlists.html",
-          controller: 'PlaylistsCtrl'
-        }
+
+  .state('app.playlists', {
+    url: "/playlists",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/playlists.html",
+        controller: 'PlaylistsCtrl'
       }
-    })
+    }
+  })
+
+  .state('app.journal', {
+    url: "/journal",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/journal.html",
+        controller: 'JournalCtrl'
+      }
+    }
+  })
 
   .state('app.single', {
     url: "/playlists/:playlistId",
