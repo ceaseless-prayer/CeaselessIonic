@@ -17,7 +17,7 @@ angular.module('ceaseless.services', [])
     };
 
     function generateBackgroundImageCss(url) {
-      var colorString = 'rgba(0,1,47,0.6)';
+      var colorString = 'rgba(0,1,47,0.4)';
       var urlSuffix = 'url('+url+')';
       var gradients = [
         'linear-gradient(to bottom, '+colorString+','+colorString+')',

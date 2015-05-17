@@ -31,6 +31,11 @@ angular.module('ceaseless.controllers', [])
       $scope.closeLogin();
     }, 1000);
   };
+
+  $scope.$watch(function(){return background.styles['background-image']}, function(newVal, oldVal){
+    $scope.backgroundStyles = background.styles;
+  });
+
   $scope.backgroundStyles = background.styles;
 })
 
