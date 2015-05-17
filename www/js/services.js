@@ -16,6 +16,18 @@ angular.module('ceaseless.services', [])
       }
     };
 
+    function generateBackgroundImageCss(url) {
+      var colorString = 'rgba(0,1,47,0.6)';
+      var urlSuffix = 'url('+url+')';
+      var gradients = [
+        'linear-gradient(to bottom, '+colorString+','+colorString+')',
+        '-webkit-gradient(linear, left top, left bottom, from('+colorString+'),to('+colorString+'))',
+        '-webkit-linear-gradient(top, '+colorString+','+colorString+')'
+      ];
+
+      return gradients[1] + ',' + urlSuffix;
+    }
+
     // return a function that will supply
     // the background image
     // the blurred version
@@ -34,8 +46,9 @@ angular.module('ceaseless.services', [])
     var img = new Image();
     function setupBlurredImage() {
       var docHeight = getDocHeight();
-      config.w = Math.round(0.5 * img.naturalWidth * docHeight / img.naturalHeight);
-      config.h = Math.round(0.5 * docHeight);
+      // for speed, shrink blurred image by a third
+      config.w = Math.round(0.3 * img.naturalWidth * docHeight / img.naturalHeight);
+      config.h = Math.round(0.3 * docHeight);
 
       var canvasId = 'canvas_' + parseInt(Math.random()*1000000000);
       var canvas = document.createElement('canvas');
@@ -49,7 +62,7 @@ angular.module('ceaseless.services', [])
 
       boxBlurCanvasRGBA(canvasId, 0, 0, config.w, config.h, 30, 2);
       result.blurred = canvas.toDataURL();
-      result.styles['background-image'] = 'url('+result.blurred+')';
+      result.styles['background-image'] = generateBackgroundImageCss(result.blurred);
       console.log('blur complete');
     }
     img.onload = setupBlurredImage;
