@@ -12,34 +12,31 @@
     <ion-nav-view name="menuContent">
     </ion-nav-view>
   </ion-side-menu-content>
-  <ion-side-menu side="right">
-
-  </ion-side-menu>
   <ion-side-menu side="left" style="background-image:url('{{backgroundImage}}'); background-repeat:no-repeat" class="ceaseless-menu-dark">
     <ion-header-bar class="ceaseless-bar-dark">
       <h1 class="title">Menu</h1>
     </ion-header-bar>
     <ion-content>
       <ion-list>
-        <ion-item menu-close>
+        <ion-item menu-close href="#/app/people">
           People
         </ion-item>
-        <ion-item menu-close>
+        <ion-item menu-close href="#/app/settings">
           Settings
         </ion-item>
-        <ion-item menu-close>
+        <ion-item menu-close href="#/app/help">
           Help
         </ion-item>
-        <ion-item menu-close>
+        <ion-item menu-close href="#/app/contact-us">
           Contact Us
         </ion-item>
-        <ion-item menu-close>
+        <ion-item menu-close href="#/app/about">
           About
         </ion-item>
-        <ion-item menu-close>
+        <ion-item menu-close href="#/app/review">
           Review Ceaseless
         </ion-item>
-        <ion-item menu-close>
+        <ion-item menu-close href="#/app/subscribe">
           Subscribe to Newsletter
         </ion-item>
         <ion-item menu-close ng-click="login()">
@@ -48,11 +45,8 @@
         <ion-item menu-close href="#/app/search">
           Search
         </ion-item>
-        <ion-item menu-close href="#/app/browse">
-          Browse
-        </ion-item>
-        <ion-item menu-close href="#/app/playlists">
-          Playlists
+        <ion-item menu-close href="#/app/daily">
+          Home
         </ion-item>
       </ion-list>
     </ion-content>

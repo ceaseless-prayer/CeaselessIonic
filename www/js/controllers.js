@@ -97,7 +97,7 @@ angular.module('ceaseless.controllers', [])
 .controller('JournalCtrl', function($scope, $ionicModal, background) {
     $scope.now = new Date();
     background().blurred.then(function(src) {
-      console.log('blur complete');
+      $scope.backgroundImage = src;
       $scope.blurredImage = src;
     });
     $scope.backgroundImage = background().original;

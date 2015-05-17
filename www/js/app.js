@@ -39,18 +39,8 @@ angular.module('ceaseless', ['ionic', 'ceaseless.controllers', 'ceaseless.servic
     }
   })
 
-  .state('app.browse', {
-    url: "/browse",
-    views: {
-      'menuContent': {
-        templateUrl: "templates/browse.html",
-        controller: 'JournalCtrl'
-      }
-    }
-  })
-
-  .state('app.playlists', {
-    url: "/playlists",
+  .state('app.daily', {
+    url: "/daily",
     views: {
       'menuContent': {
         templateUrl: "templates/daily.html",
@@ -79,5 +69,5 @@ angular.module('ceaseless', ['ionic', 'ceaseless.controllers', 'ceaseless.servic
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/playlists');
+  $urlRouterProvider.otherwise('/app/daily');
 });

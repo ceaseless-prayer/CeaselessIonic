@@ -1,4 +1,4 @@
-<ion-modal-view>
+<ion-modal-view class="note-modal-container" style="background-image:url('{{backgroundImage}}');">
   <ion-header-bar class="ceaseless-bar-dark">
     <div class="buttons">
       <button class="button button-clear" ng-click="cancelNote()">Close</button>
@@ -8,9 +8,9 @@
       <button class="button button-clear" ng-click="saveNote()">Save</button>
     </div>
   </ion-header-bar>
-  <ion-content scroll="false">
+  <ion-content scroll="false" class="people-tagger">
     <label class="item item-input">
-      <input class="people-tagger" type="text" placeholder="Tag your friends" ng-model="noteData.peopleTagged">
+      <input type="text" placeholder="Tag your friends" ng-model="noteData.peopleTagged">
     </label>
   </ion-content>
   <ion-content overflow-scroll="true" class="note-body-container">
