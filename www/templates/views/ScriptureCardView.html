@@ -1,14 +1,16 @@
 <div class="inner-card" ng-controller="ScriptureCardController">
   <!-- inverted blurred image -->
-  <fa-app style="height: 200px">
-    <fa-image-surface fa-image-url="{{backgroundImage}}">
-    </fa-image-surface>
-  </fa-app>
+  <div class="card-background">
+    <img ng-src="{{backgroundImage}}" style="width:100%"/>
+    <img ng-src="{{blurredImage}}" style="width:100%;-webkit-transform:scaleY(-1);transform: scaleY(-1);"/>
+  </div>
  <!-- scripture text -->
 
   <div class="card-content">
     <div>{{card.title}}</div> <!-- Name ... button-->
-    <div></div> <!-- photo? -->
+    <div>Be joyful always, pray continually,
+      give thanks in all circumstances for this is God's will for you
+      in Christ Jesus</div> <!-- photo? -->
     <div></div> <!-- card? -->
   </div>
 </div>

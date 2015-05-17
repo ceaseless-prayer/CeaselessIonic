@@ -1,6 +1,12 @@
 angular.module('ceaseless.services', [])
 
-.factory('background', ['$q', function($q) {
+.provider('background', function () {
+    // initialize the result
+    var result = {
+      original: '',
+      blurred: ''
+    };
+
     // return a function that will supply
     // the background image
     // the blurred version
@@ -11,31 +17,37 @@ angular.module('ceaseless.services', [])
     canvas.id = canvasId;
     document.body.appendChild(canvas);
     var context = canvas.getContext('2d');
+
     var img = new Image();
+
     var config = {
-      x:0,
-      y:0,
-      h:200,
-      w:200,
       src: 'img/at_the_beach.jpg'
     };
-    var deferred = $q.defer();
+    result.original = config.src;
 
     img.onload = function () {
+      var doc = window.document;
+      config.w = ~~(0.5 * img.naturalWidth * doc.height / img.naturalHeight);
+      config.h = ~~(0.5 * doc.height);
+      // wd / wn = hd / hn
+      // wd = wn * hd / hn
+      canvas.width = config.w;
+      canvas.height = config.h;
+      //canvas.style.width = config.w * 2;
+      //canvas.style.height = config.h * 2;
       context.drawImage(img, 0, 0, config.w, config.h);
-      boxBlurCanvasRGBA(canvasId, 0, 0, config.w, config.h, 10, 2);
+      boxBlurCanvasRGBA(canvasId, 0, 0, config.w, config.h, 30, 2);
+      result.blurred = canvas.toDataURL();
       console.log('blur complete');
-      deferred.resolve(canvas.toDataURL());
     };
+
     img.crossOrigin = '';
     img.src = config.src;
 
-    window.canvas = canvas;
-    return function () {
-      return {
-        original: config.src,
-        blurred: deferred.promise,
-        canvas: canvas
+    this.$get = function () {
+      return new function () {
+        return result;
       };
     };
-  }]);
+
+  });
