@@ -32,7 +32,7 @@ angular.module('ceaseless.controllers', [])
     }, 1000);
   };
 
-  $scope.backgroundImage = background.blurred;
+  $scope.backgroundStyles = background.styles;
 })
 
 .controller('DailyCtrl', function($scope, $state, background, $ionicSlideBoxDelegate) {
@@ -79,8 +79,6 @@ angular.module('ceaseless.controllers', [])
         $scope.transitioning = false;
       });
   };
-
-  $scope.backgroundImage = background.blurred;
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
@@ -88,7 +86,8 @@ angular.module('ceaseless.controllers', [])
 
 .controller('JournalCtrl', function($scope, $ionicModal, background) {
     $scope.now = new Date();
-    $scope.backgroundImage = background.blurred;
+    $scope.backgroundStyles = background.styles;
+
     // Create the note editor modal that we will use later
     $ionicModal.fromTemplateUrl('templates/addNote.html', {
       scope: $scope

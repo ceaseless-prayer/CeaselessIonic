@@ -1,5 +1,5 @@
 <ion-side-menus enable-menu-with-back-views="false">
-  <ion-side-menu-content style="background-image:url('{{backgroundImage}}'); background-repeat:no-repeat; background-size:cover;">
+  <ion-side-menu-content ng-style="backgroundStyles">
     <ion-nav-bar class="ceaseless-bar-dark">
       <ion-nav-back-button>
       </ion-nav-back-button>
@@ -12,7 +12,7 @@
     <ion-nav-view name="menuContent">
     </ion-nav-view>
   </ion-side-menu-content>
-  <ion-side-menu side="left" style="background-image:url('{{backgroundImage}}'); background-repeat:no-repeat;" class="ceaseless-menu-dark">
+  <ion-side-menu side="left" ng-style="backgroundStyles" class="ceaseless-menu-dark">
     <ion-header-bar class="ceaseless-bar-dark">
       <h1 class="title">Menu</h1>
     </ion-header-bar>

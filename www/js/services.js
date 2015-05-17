@@ -4,7 +4,12 @@ angular.module('ceaseless.services', [])
     // initialize the result
     var result = {
       original: '',
-      blurred: ''
+      blurred: '',
+      styles: {
+        'background-image':'url()',
+        'background-repeat':'no-repeat',
+        'background-size': 'cover'
+      }
     };
 
     // return a function that will supply
@@ -38,6 +43,7 @@ angular.module('ceaseless.services', [])
       context.drawImage(img, 0, 0, config.w, config.h);
       boxBlurCanvasRGBA(canvasId, 0, 0, config.w, config.h, 30, 2);
       result.blurred = canvas.toDataURL();
+      result.styles['background-image'] = 'url('+result.blurred+')';
       console.log('blur complete');
     };
 
