@@ -96,7 +96,9 @@ function boxBlurCanvasRGBA( id, top_x, top_y, width, height, radius, iterations 
 		// so it might be okay to remove the whole try/catch block and just use
 		// imageData = context.getImageData( top_x, top_y, width, height );
 		try {
-			netscape.security.PrivilegeManager.enablePrivilege("UniversalBrowserRead");
+			if (typeof(netscape) !== 'undefined') {
+				netscape.security.PrivilegeManager.enablePrivilege("UniversalBrowserRead");
+			}
 			imageData = context.getImageData( top_x, top_y, width, height );
 		} catch(e) {
 			alert("Cannot access local image");

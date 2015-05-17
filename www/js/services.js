@@ -1,9 +1,13 @@
 angular.module('ceaseless.services', [])
 
 .provider('background', function () {
+    var config = {
+      src: 'img/at_the_beach.jpg'
+    };
+
     // initialize the result
     var result = {
-      original: '',
+      original: config.src,
       blurred: '',
       styles: {
         'background-image':'url()',
@@ -16,31 +20,33 @@ angular.module('ceaseless.services', [])
     // the background image
     // the blurred version
     // and the flipped+blurred version
-    var canvasId = 'canvas_' + parseInt(Math.random()*1000000000);
-    var canvas = document.createElement('canvas');
-    canvas.style.display = 'none';
-    canvas.id = canvasId;
-    document.body.appendChild(canvas);
-    var context = canvas.getContext('2d');
+
+    // utility function
+    function getDocHeight() {
+      var D = document;
+      return Math.max(
+        D.body.scrollHeight, D.documentElement.scrollHeight,
+        D.body.offsetHeight, D.documentElement.offsetHeight,
+        D.body.clientHeight, D.documentElement.clientHeight
+      );
+    }
 
     var img = new Image();
-
-    var config = {
-      src: 'img/at_the_beach.jpg'
-    };
-    result.original = config.src;
-
     img.onload = function () {
-      var doc = window.document;
-      config.w = ~~(0.5 * img.naturalWidth * doc.height / img.naturalHeight);
-      config.h = ~~(0.5 * doc.height);
-      // wd / wn = hd / hn
-      // wd = wn * hd / hn
+      var docHeight = getDocHeight();
+      config.w = Math.round(0.5 * img.naturalWidth * docHeight / img.naturalHeight);
+      config.h = Math.round(0.5 * docHeight);
+
+      var canvasId = 'canvas_' + parseInt(Math.random()*1000000000);
+      var canvas = document.createElement('canvas');
+      canvas.style.display = 'none';
+      canvas.id = canvasId;
       canvas.width = config.w;
       canvas.height = config.h;
-      //canvas.style.width = config.w * 2;
-      //canvas.style.height = config.h * 2;
+      document.body.appendChild(canvas);
+      var context = canvas.getContext('2d');
       context.drawImage(img, 0, 0, config.w, config.h);
+
       boxBlurCanvasRGBA(canvasId, 0, 0, config.w, config.h, 30, 2);
       result.blurred = canvas.toDataURL();
       result.styles['background-image'] = 'url('+result.blurred+')';
@@ -55,5 +61,4 @@ angular.module('ceaseless.services', [])
         return result;
       };
     };
-
   });
