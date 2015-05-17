@@ -35,7 +35,7 @@ angular.module('ceaseless.controllers', [])
   $scope.backgroundStyles = background.styles;
 })
 
-.controller('DailyCtrl', function($scope, $state, background, $ionicSlideBoxDelegate) {
+.controller('DailyCtrl', function($scope, $state, $ionicSlideBoxDelegate) {
   $scope.cards = [
     {
       title: '1 Thessalonians 5:16-18',

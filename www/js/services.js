@@ -8,7 +8,7 @@ angular.module('ceaseless.services', [])
     // initialize the result
     var result = {
       original: config.src,
-      blurred: '',
+      blurred: config.src,
       styles: {
         'background-image':'url()',
         'background-repeat':'no-repeat',
@@ -32,7 +32,7 @@ angular.module('ceaseless.services', [])
     }
 
     var img = new Image();
-    img.onload = function () {
+    function setupBlurredImage() {
       var docHeight = getDocHeight();
       config.w = Math.round(0.5 * img.naturalWidth * docHeight / img.naturalHeight);
       config.h = Math.round(0.5 * docHeight);
@@ -51,8 +51,8 @@ angular.module('ceaseless.services', [])
       result.blurred = canvas.toDataURL();
       result.styles['background-image'] = 'url('+result.blurred+')';
       console.log('blur complete');
-    };
-
+    }
+    img.onload = setupBlurredImage;
     img.crossOrigin = '';
     img.src = config.src;
 

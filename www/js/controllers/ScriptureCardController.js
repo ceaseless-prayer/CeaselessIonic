@@ -16,7 +16,11 @@ angular.module('ceaseless.controllers')
       $scope.modal.hide();
     };
 
+    $scope.$watch(function(){return background.blurred}, function(newVal, oldVal){
+      console.log('new',newVal);
+      $scope.blurredImage = newVal;
+    });
+
     $scope.backgroundImage = background.original;
     $scope.blurredImage = background.blurred;
-
   });

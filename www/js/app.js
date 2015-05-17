@@ -24,7 +24,11 @@ angular.module('ceaseless', ['ionic', 'ceaseless.controllers', 'ceaseless.servic
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider, backgroundProvider) {
+.run(function(background) {
+  // initialize background provider.
+})
+
+.config(function($stateProvider, $urlRouterProvider) {
 
   $stateProvider
 
