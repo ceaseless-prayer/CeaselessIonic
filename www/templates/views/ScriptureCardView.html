@@ -1,16 +1,19 @@
-<div class="inner-card" ng-controller="ScriptureCardController">
-  <!-- inverted blurred image -->
-  <div class="card-background">
-    <img ng-src="{{backgroundImage}}" style="width:400px"/>
-    <img ng-src="{{blurredImage}}" style="width:400px;-webkit-transform:scaleY(-1);transform: scaleY(-1);"/>
-  </div>
- <!-- scripture text -->
-
-  <div class="card-content">
-    <div>{{card.title}}</div> <!-- Name ... button-->
-    <div>Be joyful always, pray continually,
-      give thanks in all circumstances for this is God's will for you
-      in Christ Jesus</div> <!-- photo? -->
-    <div></div> <!-- card? -->
+<div class="inner-card" ng-style="cardHeightStyle" ng-controller="ScriptureCardController">
+  <!--<div style="background-color:blue; height:50%">&nbsp;</div>-->
+  <!--<div style="background-color:yellow; height:50%">&nbsp;</div>-->
+  <div style="height:100%">
+    <img ng-src="{{verseImage}}" style="width:100%; height:50%;"/>
+    <div style="width:100%; position:relative; height:50%">
+      <div style="position:absolute; top:-5px; left:0; width:100%;">
+        <img ng-src="{{blurredImage}}" style="width:100%;height:100%;-webkit-transform:scaleY(-1);-ms-transform: scaleY(-1);transform: scaleY(-1);"/>
+      </div>
+      <div style="position: absolute; top:10px; left:0; margin:8px;">
+        <div>{{card.title}}</div>
+        <div>Be joyful always, pray continually,
+          give thanks in all circumstances for this is God's will for you
+          in Christ Jesus</div>
+        <button ng-click="showShareDialog()">Share</button>
+      </div>
+    </div>
   </div>
 </div>

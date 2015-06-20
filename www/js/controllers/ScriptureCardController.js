@@ -20,6 +20,12 @@ angular.module('ceaseless.controllers')
       $scope.blurredImage = newVal;
     });
 
-    $scope.backgroundImage = background.original;
+    var cardHeight = window.innerHeight - 40 - 60;
+    $scope.cardHeightStyle = {height: cardHeight + 'px'};
+
+    $scope.verseImage = background.original;
     $scope.blurredImage = background.blurred;
+    $scope.showShareDialog = function () {
+      window.socialmessage.send({"text":"hello world"});
+    };
   });
