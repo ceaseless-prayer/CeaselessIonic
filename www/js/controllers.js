@@ -32,7 +32,7 @@ angular.module('ceaseless.controllers', [])
     }, 1000);
   };
 
-  $scope.$watch(function(){return background.styles['background-image']}, function(newVal, oldVal){
+  $scope.$watch(function(){return background.styles['background-image']}, function(){
     $scope.backgroundStyles = background.styles;
   });
 
