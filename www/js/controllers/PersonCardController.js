@@ -1,6 +1,6 @@
 angular.module('ceaseless.controllers')
 
-  .controller('PersonCardController', function($scope, $ionicModal, background) {
+  .controller('PersonCardController', function($scope, $ionicModal, background, cardHeight) {
     // Form data for the login modal
     $scope.loginData = {};
 
@@ -16,6 +16,6 @@ angular.module('ceaseless.controllers')
       $scope.modal.hide();
     };
 
-    $scope.backgroundImage = background.blurred;
+    $scope.cardStyles = angular.extend({}, cardHeight, background.cardBackground);
 
   });

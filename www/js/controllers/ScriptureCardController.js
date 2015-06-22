@@ -1,6 +1,6 @@
 angular.module('ceaseless.controllers')
 
-  .controller('ScriptureCardController', function($scope, $ionicModal, background) {
+  .controller('ScriptureCardController', function($scope, $ionicModal, background, cardHeight) {
     // Form data for the login modal
     $scope.loginData = {};
 
@@ -20,8 +20,7 @@ angular.module('ceaseless.controllers')
       $scope.blurredImage = newVal;
     });
 
-    var cardHeight = window.innerHeight - 40 - 60;
-    $scope.cardHeightStyle = {height: cardHeight + 'px'};
+    $scope.cardHeightStyle = cardHeight;
 
     $scope.verseImage = background.original;
     $scope.blurredImage = background.blurred;

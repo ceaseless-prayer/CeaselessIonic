@@ -13,6 +13,11 @@ angular.module('ceaseless.services', [])
         'background-image':'url()',
         'background-repeat':'no-repeat',
         'background-size': 'cover'
+      },
+      cardBackground: {
+        'background-image':'url()',
+        'background-repeat':'no-repeat',
+        'background-size': 'cover'
       }
     };
 
@@ -24,7 +29,6 @@ angular.module('ceaseless.services', [])
         '-webkit-gradient(linear, left top, left bottom, from('+colorString+'),to('+colorString+'))',
         '-webkit-linear-gradient(top, '+colorString+','+colorString+')'
       ];
-
       return gradients[1] + ',' + urlSuffix;
     }
 
@@ -63,6 +67,7 @@ angular.module('ceaseless.services', [])
       boxBlurCanvasRGBA(canvasId, 0, 0, config.w, config.h, 30, 2);
       result.blurred = canvas.toDataURL();
       result.styles['background-image'] = generateBackgroundImageCss(result.blurred);
+      result.cardBackground['background-image'] = 'url('+result.blurred+')';
       console.log('blur complete');
     }
     img.onload = setupBlurredImage;
@@ -74,4 +79,8 @@ angular.module('ceaseless.services', [])
         return result;
       };
     };
+  })
+  .factory('cardHeight', function () {
+    var cardHeight = window.innerHeight - 40 - 60;
+    return {height: cardHeight + 'px'};
   });
