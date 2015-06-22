@@ -40,6 +40,7 @@ angular.module('ceaseless.controllers', [])
 })
 
 .controller('DailyCtrl', function($scope, $state, $ionicSlideBoxDelegate) {
+
   $scope.cards = [
     {
       title: '1 Thessalonians 5:16-18',
@@ -72,6 +73,22 @@ angular.module('ceaseless.controllers', [])
       template: 'templates/views/ProgressCardView.html'
     }
   ];
+
+  ionic.Platform.ready( function() {
+    if (!navigator.contacts) {
+      console.log('Cordova contacts not available.')
+    } else {
+      var options = new ContactFindOptions();
+      options.multiple = true;
+      navigator.contacts.find(["displayName", "photos"], function (contacts) {
+        //On success callback function. This will return an array of contacts.
+        $scope.cards[1].title = contacts[1].displayName;
+        $scope.cards[2].title = contacts[2].displayName;
+        $scope.cards[3].title = contacts[3].displayName;
+      }, undefined, options);
+    }
+  });
+
   $scope.slideHasChanged = function (index) {
     console.log(index);
   };
