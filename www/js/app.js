@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('ceaseless', ['ionic', 'ceaseless.controllers', 'ceaseless.services', 'QuickList', 'famous.angular'])
+angular.module('ceaseless', ['ionic', 'ceaseless.controllers', 'ceaseless.services', 'QuickList', 'famous.angular', 'ngCordova'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -34,50 +34,67 @@ angular.module('ceaseless', ['ionic', 'ceaseless.controllers', 'ceaseless.servic
   $stateProvider
 
   .state('app', {
-    url: "/app",
+    url: '/app',
     abstract: true,
-    templateUrl: "templates/menu.html",
+    templateUrl: 'templates/menu.html',
     controller: 'AppCtrl'
   })
 
   .state('app.search', {
-    url: "/search",
+    url: '/search',
     views: {
       'menuContent': {
-        templateUrl: "templates/search.html"
+        templateUrl: 'templates/search.html'
       }
     }
   })
 
   .state('app.daily', {
-    url: "/daily",
+    url: '/daily',
     views: {
       'menuContent': {
-        templateUrl: "templates/daily.html",
+        templateUrl: 'templates/daily.html',
         controller: 'DailyCtrl'
       }
     }
   })
 
   .state('app.journal', {
-    url: "/journal",
+    url: '/journal',
     views: {
       'menuContent': {
-        templateUrl: "templates/journal.html",
+        templateUrl: 'templates/journal.html',
         controller: 'JournalCtrl'
       }
     }
   })
 
-  .state('app.single', {
-    url: "/playlists/:playlistId",
+  .state('app.people', {
+    url: '/people',
     views: {
       'menuContent': {
-        templateUrl: "templates/playlist.html",
+        templateUrl: 'templates/people.html',
+        controller: 'PeopleCtrl'
+      }
+    }
+  })
+
+  .state('app.single', {
+    url: '/playlists/:playlistId',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/playlist.html',
         controller: 'PlaylistCtrl'
       }
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/daily');
-});
+  $urlRouterProvider.otherwise('/app/people');
+})
+.config( [
+  '$compileProvider',
+  function( $compileProvider )
+  {
+    $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|file|content):/);
+  }
+]);

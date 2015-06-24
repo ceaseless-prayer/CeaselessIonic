@@ -1,0 +1,18 @@
+<ion-view view-title="People">
+  <ion-content overflow-scroll="true" ng-style="backgroundStyles">
+    <h1>People *</h1>
+    <div>This is where you can do stuff with your contacts</div>
+    <div>{{userMsg}}</div>
+    <div>{{contacts.length}} total contacts</div>
+    <button class="button" ng-click="getContactList()">Get My Contacts</button>
+    <ion-list>
+      <ion-item class="item item-avatar" quick-ng-repeat="contact in contacts" quick-repeat-list="contacts">
+        <img ng-src="{{contact.photos[0].value}}"/>
+        <h2>{{contact.displayName}}</h2>
+        <p>{{contact.name.formatted}}</p>
+        <p>{{contact.profilePicture}}</p>
+        <p>{{contact.photos[0].value}}</p>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

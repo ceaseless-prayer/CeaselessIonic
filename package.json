@@ -27,6 +27,8 @@
     "net.yoik.cordova.plugins.screenorientation",
     "org.apache.cordova.file",
     "cordova-plugin-social-message",
-    "com.telerik.plugins.nativepagetransitions"
+    "com.telerik.plugins.nativepagetransitions",
+    "org.apache.cordova.contacts",
+    "org.apache.cordova.file"
   ]
 }

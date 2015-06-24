@@ -16,9 +16,9 @@ angular.module('ceaseless.controllers')
       $scope.modal.hide();
     };
 
-    $scope.$watch(function(){return background.cardBackground['background-image']}, function(){
-      $scope.cardStyles['background-image'] = background.cardBackground['background-image'];
-    });
+    //$scope.$watch(function(){return background.cardBackground['background-image']}, function(){
+    //  $scope.cardStyles['background-image'] = background.cardBackground['background-image'];
+    //});
 
     $scope.cardStyles = angular.extend({}, cardHeight, background.cardBackground);
 

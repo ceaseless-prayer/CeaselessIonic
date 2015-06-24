@@ -6,6 +6,8 @@
   },
   "dependencies": {
     "quick-ngrepeat": "*",
-    "famous-angular": "~0.5.2"
+    "famous-angular": "~0.5.2",
+    "ngCordova": "~0.1.17-alpha",
+    "lodash": "~3.9.3"
   }
 }

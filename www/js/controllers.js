@@ -39,7 +39,7 @@ angular.module('ceaseless.controllers', [])
   $scope.backgroundStyles = background.styles;
 })
 
-.controller('DailyCtrl', function($scope, $state, $ionicSlideBoxDelegate) {
+.controller('DailyCtrl', function($scope, $state, $ionicPlatform, $ionicSlideBoxDelegate) {
 
   $scope.cards = [
     {
@@ -74,17 +74,31 @@ angular.module('ceaseless.controllers', [])
     }
   ];
 
-  ionic.Platform.ready( function() {
+  $ionicPlatform.ready( function() {
     if (!navigator.contacts) {
       console.log('Cordova contacts not available.')
     } else {
       var options = new ContactFindOptions();
       options.multiple = true;
-      navigator.contacts.find(["displayName", "photos"], function (contacts) {
+      options.filter = "Chris";
+      navigator.contacts.find(['displayName', 'name', 'photos'], function (contacts) {
         //On success callback function. This will return an array of contacts.
-        $scope.cards[1].title = contacts[1].displayName;
-        $scope.cards[2].title = contacts[2].displayName;
-        $scope.cards[3].title = contacts[3].displayName;
+        var ii = [1, 2, 3];
+        alert(contacts.length);
+        angular.forEach(ii, function (i) {
+          if(contacts[i*7].name) {
+            $scope.cards[i].title = JSON.stringify(contacts[i*7].name);
+          } else {
+            alert('no name');
+          }
+
+          if(contacts[i*7].photos) {
+            $scope.cards[i].photoProfile  = contacts[i*7].photos.value;
+          } else {
+            alert('no photo');
+          }
+        });
+
       }, undefined, options);
     }
   });
