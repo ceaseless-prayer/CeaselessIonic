@@ -17,18 +17,17 @@
   "cordovaPlugins": [
     "org.apache.cordova.console",
     "org.apache.cordova.device",
+    "org.apache.cordova.contacts",
     "com.ionic.keyboard"
   ],
   "cordovaPlatforms": [
     "android"
   ],
   "plugins": [
-    "org.apache.cordova.contacts",
     "net.yoik.cordova.plugins.screenorientation",
     "cordova-plugin-social-message",
     "com.telerik.plugins.nativepagetransitions",
-    "org.apache.cordova.contacts",
-    "cordova-plugin-file",
-    "cordova-plugin-file-transfer"
+    "https://git-wip-us.apache.org/repos/asf/cordova-plugin-file-transfer.git",
+    "https://git-wip-us.apache.org/repos/asf/cordova-plugin-file.git"
   ]
 }
