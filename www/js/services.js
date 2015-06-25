@@ -1,6 +1,10 @@
 angular.module('ceaseless.services', [])
 
 .factory('background', function ($ionicPlatform, $cordovaFile, $http, ceaselessServiceUrls, $cordovaFileTransfer) {
+
+    var CURRENT = 'currentBackgroundImage';
+    var NEXT = 'nextBackgroundImage';
+
     // defaults
     var config = {
       src: 'img/at_the_beach.jpg'
@@ -68,8 +72,11 @@ angular.module('ceaseless.services', [])
     }
 
     function setupBackgroundImage(dynamicImage) {
+      console.log('dynamicImage?', dynamicImage);
+
       if (dynamicImage) {
-        config.src = cordova.file.cacheDirectory + 'currentBackgroundImage';
+        console.log('changing the image');
+        config.src = cordova.file.cacheDirectory + CURRENT;
         result.original = config.src;
       }
 
@@ -79,35 +86,54 @@ angular.module('ceaseless.services', [])
     }
 
     function useNewBackgroundImage() {
-          $cordovaFile.checkFile(cordova.file.cacheDirectory, 'nextBackgroundImage').then(function (exists) {
-            if(exists) {
-              $cordovaFile.checkFile(cordova.file.cacheDirectory, 'currentBackgroundImage').then(function (exists) {
-                if(exists) {
-                  $cordovaFile.removeFile(cordova.file.cacheDirectory, 'currentBackgroundImage').then(function (success) {
-                    $cordovaFile.copy(cordova.file.cacheDirectory, 'nextBackgroundImage', cordova.file.cacheDirectory, 'currentBackgroundImage');
-                  });
-                }
-              });
-            }
-          });
+        var checkNext = function () {
+            console.log('checking for next file');
+            return $cordovaFile.checkFile(cordova.file.cacheDirectory, NEXT);
+        };
+        var checkCurrent = function () {
+            console.log('checking for current file');
+            return $cordovaFile.checkFile(cordova.file.cacheDirectory, CURRENT);
+        };
+        var cleanUpCurrentAndUpdate = function () {
+            console.log('cleaning up current file');
+            return $cordovaFile.removeFile(cordova.file.cacheDirectory, CURRENT).then(updateBackgroundImage);
+        };
+        var updateBackgroundImage = function () {
+            console.log('copying over background file');
+            $cordovaFile.copyFile(cordova.file.cacheDirectory, NEXT, cordova.file.cacheDirectory, CURRENT);
+        };
+
+        checkNext()
+        .then(checkCurrent)
+        .then(cleanUpCurrentAndUpdate, updateBackgroundImage)
+        .then(function (success) {
+            console.log('updated background image');
+        });
     }
 
     function fetchNextBackgroundImage() {
       $http.get(ceaselessServiceUrls.getAScriptureImage).
         success(function(data, status, headers, config) {
           if (data.imageUrl) {
-            $cordovaFileTransfer.download(data.imageUrl, cordova.file.cacheDirectory + 'nextBackgroundImage', {}, true);
+            $cordovaFileTransfer.download(data.imageUrl, cordova.file.cacheDirectory + NEXT, {}, true);
           }
         });
     }
 
     setupBackgroundImage();
+
+    result.refresh = function () {
+        console.log('refreshing background');
+        $cordovaFile.checkFile(cordova.file.cacheDirectory, CURRENT)
+                .then(setupBackgroundImage, function (error) { console.log(JSON.stringify(error)); });
+    };
+
     $ionicPlatform.ready(function () {
-      $cordovaFile.checkFile(cordova.file.cacheDirectory, 'currentBackgroundImage')
-        .then(setupBackgroundImage);
+      result.refresh();
       useNewBackgroundImage();
       fetchNextBackgroundImage();
     });
+
     return result;
   })
   .factory('cardHeight', function () {
