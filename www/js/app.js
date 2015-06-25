@@ -95,6 +95,6 @@ angular.module('ceaseless', ['ionic', 'ceaseless.controllers', 'ceaseless.servic
   '$compileProvider',
   function( $compileProvider )
   {
-    $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|file|content):/);
+    $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|file|content|data):/);
   }
 ]);
