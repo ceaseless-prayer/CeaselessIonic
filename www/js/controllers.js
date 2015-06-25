@@ -1,6 +1,7 @@
 angular.module('ceaseless.controllers', [])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout, background) {
+  // controller for menu
   // Form data for the login modal
   $scope.loginData = {};
 
@@ -109,23 +110,23 @@ angular.module('ceaseless.controllers', [])
   $scope.openJournal = function () {
     //$scope.transitioning = true;
 
-    var options = {
-      "origin"         : "right", // 'left|right', open the drawer from this side of the view, default 'left'
-      "action"         : "open", // 'open|close', default 'open', note that close is not behaving nicely on Crosswalk
-      "duration"       :    300, // in milliseconds (ms), default 400
-      "iosdelay"       :     50, // ms to wait for the iOS webview to update before animation kicks in, default 60
-      "href"           : "#/app/journal"
-    };
-    window.plugins.nativepagetransitions.drawer(
-      options,
-      function (msg) {console.log("success: " + msg)}, // called when the animation has finished
-      function (msg) {alert("error: " + msg)} // called in case you pass in weird values
-    );
+//    var options = {
+//      "origin"         : "right", // 'left|right', open the drawer from this side of the view, default 'left'
+//      "action"         : "open", // 'open|close', default 'open', note that close is not behaving nicely on Crosswalk
+//      "duration"       :    300, // in milliseconds (ms), default 400
+//      "iosdelay"       :     50, // ms to wait for the iOS webview to update before animation kicks in, default 60
+//      "href"           : "#/app/journal"
+//    };
+//    window.plugins.nativepagetransitions.drawer(
+//      options,
+//      function (msg) {console.log("success: " + msg)}, // called when the animation has finished
+//      function (msg) {alert("error: " + msg)} // called in case you pass in weird values
+//    );
 
-    //$state.go('app.journal')
-    //  .then(function(current) {
-    //    $scope.transitioning = false;
-    //  });
+    $state.go('app.journal')
+      .then(function(current) {
+        $scope.transitioning = false;
+      });
   };
 })
 

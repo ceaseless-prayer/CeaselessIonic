@@ -1,18 +1,10 @@
 angular.module('ceaseless.services', [])
 
-.provider('background', function () {
+.factory('background', function ($ionicPlatform, $cordovaFile, $http, ceaselessServiceUrls, $cordovaFileTransfer) {
+    // defaults
     var config = {
       src: 'img/at_the_beach.jpg'
     };
-
-//    $ionicPlatform.ready(function () {
-//      initDynamicBackgroundImage()
-//        .then(setupBackgroundImage);
-//    });
-//
-//    function initDynamicBackgroundImage() {
-//      return $cordovaFile.checkFile(cordova.file.cache, 'currentBackgroundImage');
-//    }
 
     // initialize the result
     var result = {
@@ -40,11 +32,6 @@ angular.module('ceaseless.services', [])
       ];
       return gradients[1] + ',' + urlSuffix;
     }
-
-    // return a function that will supply
-    // the background image
-    // the blurred version
-    // and the flipped+blurred version
 
     // utility function
     function getDocHeight() {
@@ -81,22 +68,47 @@ angular.module('ceaseless.services', [])
     }
 
     function setupBackgroundImage(dynamicImage) {
-//      if (dynamicImage) {
-//        config.src = cordova.file.cache + 'currentBackgroundImage';
-//        result.original = config.src;
-//      }
+      if (dynamicImage) {
+        config.src = cordova.file.cacheDirectory + 'currentBackgroundImage';
+        result.original = config.src;
+      }
 
       img.onload = setupBlurredImage;
       img.crossOrigin = '';
       img.src = config.src;
     }
 
+    function useNewBackgroundImage() {
+          $cordovaFile.checkFile(cordova.file.cacheDirectory, 'nextBackgroundImage').then(function (exists) {
+            if(exists) {
+              $cordovaFile.checkFile(cordova.file.cacheDirectory, 'currentBackgroundImage').then(function (exists) {
+                if(exists) {
+                  $cordovaFile.removeFile(cordova.file.cacheDirectory, 'currentBackgroundImage').then(function (success) {
+                    $cordovaFile.copy(cordova.file.cacheDirectory, 'nextBackgroundImage', cordova.file.cacheDirectory, 'currentBackgroundImage');
+                  });
+                }
+              });
+            }
+          });
+    }
+
+    function fetchNextBackgroundImage() {
+      $http.get(ceaselessServiceUrls.getAScriptureImage).
+        success(function(data, status, headers, config) {
+          if (data.imageUrl) {
+            $cordovaFileTransfer.download(data.imageUrl, cordova.file.cacheDirectory + 'nextBackgroundImage', {}, true);
+          }
+        });
+    }
+
     setupBackgroundImage();
-    this.$get = function () {
-      return new function () {
-        return result;
-      };
-    };
+    $ionicPlatform.ready(function () {
+      $cordovaFile.checkFile(cordova.file.cacheDirectory, 'currentBackgroundImage')
+        .then(setupBackgroundImage);
+      useNewBackgroundImage();
+      fetchNextBackgroundImage();
+    });
+    return result;
   })
   .factory('cardHeight', function () {
     var cardHeight = window.innerHeight - 40 - 60;

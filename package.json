@@ -26,6 +26,7 @@
   "plugins": [
     "net.yoik.cordova.plugins.screenorientation",
     "cordova-plugin-social-message",
+    "cordova-plugin-whitelist",
     "com.telerik.plugins.nativepagetransitions",
     "https://git-wip-us.apache.org/repos/asf/cordova-plugin-file-transfer.git",
     "https://git-wip-us.apache.org/repos/asf/cordova-plugin-file.git"
