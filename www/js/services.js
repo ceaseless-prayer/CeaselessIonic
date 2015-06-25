@@ -4,6 +4,8 @@ angular.module('ceaseless.services', [])
 
     var CURRENT = 'currentBackgroundImage';
     var NEXT = 'nextBackgroundImage';
+    var DOWNLOADING = 'downloadingBackgroundImage';
+    //var BLURRED = 'blurredBackgroundImage';
 
     // defaults
     var config = {
@@ -115,7 +117,10 @@ angular.module('ceaseless.services', [])
       $http.get(ceaselessServiceUrls.getAScriptureImage).
         success(function(data, status, headers, config) {
           if (data.imageUrl) {
-            $cordovaFileTransfer.download(data.imageUrl, cordova.file.cacheDirectory + NEXT, {}, true);
+            $cordovaFileTransfer.download(data.imageUrl, cordova.file.cacheDirectory + DOWNLOADING, {}, true)
+            .then(function () {
+                $cordovaFile.moveFile(cordova.file.cacheDirectory, DOWNLOADING, cordova.file.cacheDirectory, NEXT);
+            });
           }
         });
     }

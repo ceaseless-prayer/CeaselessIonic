@@ -16,8 +16,9 @@ angular.module('ceaseless.controllers')
       $scope.modal.hide();
     };
 
-    $scope.$watch(function(){return background.blurred}, function(newVal, oldVal){
-      $scope.blurredImage = newVal;
+    $scope.$watch(function(){return background.blurred}, function(){
+      $scope.blurredImage = background.blurred;
+      $scope.verseImage = background.original;
     });
 
     $scope.cardHeightStyle = cardHeight;
