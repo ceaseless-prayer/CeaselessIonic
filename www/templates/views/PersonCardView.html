@@ -4,7 +4,10 @@
 
   <div class="card-content">
     <div>{{card.title}}</div> <!-- Name ... button-->
-    <div><img src="{{card.photoProfile}}"/></div> <!-- photo? -->
+    <div>
+      <img ng-src="{{card.photoProfile}}" ng-show="card.photoProfile"/>
+      <span style="background-color: #00012f; border-radius: 6px; font-size: 24px; margin: 2px auto;" ng-hide="card.photoProfile">{{card.initials}}</span>
+    </div> <!-- photo? -->
     <div></div> <!-- card? -->
   </div>
 </div>

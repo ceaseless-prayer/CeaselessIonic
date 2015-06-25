@@ -82,20 +82,19 @@ angular.module('ceaseless.controllers', [])
       options.multiple = true;
       options.filter = "Chris";
       navigator.contacts.find(['displayName', 'name', 'photos'], function (contacts) {
-        //On success callback function. This will return an array of contacts.
+        // On success callback function. This will return an array of contacts.
         var ii = [1, 2, 3];
-        alert(contacts.length);
         angular.forEach(ii, function (i) {
           if(contacts[i*7].name) {
             $scope.cards[i].title = JSON.stringify(contacts[i*7].name);
-          } else {
-            alert('no name');
           }
 
           if(contacts[i*7].photos) {
-            $scope.cards[i].photoProfile  = contacts[i*7].photos.value;
+            $scope.cards[i].photoProfile = contacts[i*7].photos[0].value;
           } else {
-            alert('no photo');
+            var givenName = contacts[i*7].name.givenName || '';
+            var familyName = contacts[i*7].name.familyName || '';
+            $scope.cards[i].initials = givenName.substring(0,1) + familyName.substring(0,1);
           }
         });
 

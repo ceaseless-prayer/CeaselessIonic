@@ -5,6 +5,15 @@ angular.module('ceaseless.services', [])
       src: 'img/at_the_beach.jpg'
     };
 
+//    $ionicPlatform.ready(function () {
+//      initDynamicBackgroundImage()
+//        .then(setupBackgroundImage);
+//    });
+//
+//    function initDynamicBackgroundImage() {
+//      return $cordovaFile.checkFile(cordova.file.cache, 'currentBackgroundImage');
+//    }
+
     // initialize the result
     var result = {
       original: config.src,
@@ -70,10 +79,19 @@ angular.module('ceaseless.services', [])
       result.cardBackground['background-image'] = 'url('+result.blurred+')';
       console.log('blur complete');
     }
-    img.onload = setupBlurredImage;
-    img.crossOrigin = '';
-    img.src = config.src;
 
+    function setupBackgroundImage(dynamicImage) {
+//      if (dynamicImage) {
+//        config.src = cordova.file.cache + 'currentBackgroundImage';
+//        result.original = config.src;
+//      }
+
+      img.onload = setupBlurredImage;
+      img.crossOrigin = '';
+      img.src = config.src;
+    }
+
+    setupBackgroundImage();
     this.$get = function () {
       return new function () {
         return result;
@@ -83,4 +101,20 @@ angular.module('ceaseless.services', [])
   .factory('cardHeight', function () {
     var cardHeight = window.innerHeight - 40 - 60;
     return {height: cardHeight + 'px'};
+  })
+  .factory('ceaselessServiceUrls', function () {
+    var urls = {
+        'votd': 'http://api.ceaselessprayer.com/v1/votd',
+        'getScripture': 'http://api.ceaselessprayer.com/v1/getScripture',
+        'announcements': 'http://www.ceaselessprayer.com/announcements/feed',
+        'getAScriptureImage': 'http://api.ceaselessprayer.com/v1/getAScriptureImage',
+        'defaultScriptureShareUrl': 'http://www.bible.is/ENGESV/Matt/21#22'
+    };
+    return urls;
+  })
+  .factory('AppConstants', function () {
+    var constants = {
+        backgroundFileName: 'currentBackgroundImage'
+    };
+    return constants;
   });
