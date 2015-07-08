@@ -16,15 +16,30 @@ angular.module('ceaseless.controllers')
       $scope.modal.hide();
     };
 
+    $scope.verseImageStyle = {
+      'background-image': 'url()',
+      'background-size': 'cover',
+      'background-repeat': 'no-repeat',
+      'width':'100%',
+      'height': '50%'
+    };
+    $scope.blurredImageStyle = angular.copy($scope.verseImageStyle);
+    angular.extend($scope.blurredImageStyle, {
+      '-webkit-transform':'scaleY(-1)',
+      '-ms-transform': 'scaleY(-1)',
+      'transform': 'scaleY(-1)'
+    });
+
     $scope.$watch(function(){return background.blurred}, function(){
-      $scope.blurredImage = background.blurred;
-      $scope.verseImage = background.original;
+      $scope.blurredImageStyle['background-image'] = 'url('+background.blurred+')';
+      $scope.verseImageStyle['background-image'] = 'url('+background.original+')';
     });
 
     $scope.cardHeightStyle = cardHeight;
 
-    $scope.verseImage = background.original;
-    $scope.blurredImage = background.blurred;
+    //$scope.verseImage = background.original;
+    //$scope.blurredImage = background.blurred;
+
     $scope.showShareDialog = function () {
       window.socialmessage.send({"text":"hello world"});
     };
