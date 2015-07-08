@@ -164,3 +164,8 @@ ion-side-menu.ceaseless-side-menu {
     left: 0;
     right: 0;
 }
+
+/** Custom slider pager **/
+.slider-pager .slider-pager-page {
+    color: #fff;
+}

@@ -1,13 +1,26 @@
 <div class="inner-card" ng-style="cardStyles" ng-controller="PersonCardController">
-  <!-- background image -->
-  <img ng-src="{{backgroundImage}}" style="width:200px"/>
-
+  <div style="width:100%; background-color:rgba(0, 1, 47, 0.8); color: white; font-size:17px; height:44px; padding: 13px 0;">
+    <span style="margin-left: 8px; white-space: nowrap;">{{card.title}}</span>
+  </div>
   <div class="card-content">
-    <div>{{card.title}}</div> <!-- Name ... button-->
-    <div>
-      <img ng-src="{{card.photoProfile}}" ng-show="card.photoProfile"/>
-      <span style="background-color: #00012f; border-radius: 6px; font-size: 24px; margin: 2px auto;" ng-hide="card.photoProfile">{{card.initials}}</span>
-    </div> <!-- photo? -->
-    <div></div> <!-- card? -->
+    <div style="text-align: center;">
+      <img ng-src="{{card.photoProfile}}" ng-show="card.photoProfile" style="border-radius: 6px; margin: 8px auto;"/>
+      <div style="height:92px; margin:8px auto; padding: 24px 0;" ng-hide="card.photoProfile">
+        <span style="background-color: #00012f; border-radius: 6px; font-size: 54px; padding: 24px; height: 92px;">{{card.initials}}</span>
+      </div>
+    </div>
+    <div style="width: 100%; background-color:rgba(0, 1, 47, 0.8);">
+      <ul>
+        <li>
+          Note 1
+        </li>
+        <li>
+          Note 2
+        </li>
+        <li>
+          Note 3
+        </li>
+      </ul>
+    </div>
   </div>
 </div>

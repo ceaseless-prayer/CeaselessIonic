@@ -91,7 +91,7 @@ angular.module('ceaseless.controllers', [])
         var ii = [1, 2, 3];
         angular.forEach(ii, function (i) {
           if(contacts[i*7].name) {
-            $scope.cards[i].title = JSON.stringify(contacts[i*7].name);
+            $scope.cards[i].title = contacts[i*7].name.formatted;
           }
 
           if(contacts[i*7].photos) {
