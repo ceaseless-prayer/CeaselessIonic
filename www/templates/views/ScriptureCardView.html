@@ -3,14 +3,16 @@
     <div ng-style="verseImageStyle">&nbsp;</div>
     <div ng-style="blurredImageStyle">
       <div style="height:100%; width:100%; background-color:rgba(0, 1, 47, 0.5);">
-        <div style="-webkit-transform-origin:50% 50%; -webkit-transform:rotate(180deg);-ms-transform:rotate(180deg);transform:rotate(180deg);">
-          <div style="position:absolute; top:8px; left: 0px; color:white; text-align:center;">
-            <div>{{card.title}}</div>
-            <div>Be joyful always, pray continually,
+        <div style="height:100%; width:100%; -webkit-transform:scaleY(-1);-ms-transform:scaleY(-1);transform:scaleY(-1);">
+          <div style="position:absolute; top:8px; left: 0px; padding: 8px">
+            <p style="font-size:16px; color:white; text-align:center;">Be joyful always, pray continually,
               give thanks in all circumstances for this is God's will for you
-              in Christ Jesus</div>
+              in Christ Jesus.</p>
           </div>
-          <span style="position:absolute; font-size: 32px; color: white; bottom:8px; right: 8px" ng-click="showShareDialog()"><i class="ion-android-share"></i></span>
+          <div style="width:100%; position:absolute; color:white; bottom: 8px; padding: 0 8px; text-align:center">
+              <span style="margin: 0 auto;">{{card.title}}</span>
+              <span style="position:absolute; bottom: 0px; right: 8px; font-size: 32px; color: white;" ng-click="showShareDialog()"><i class="ion-android-share"></i></span>
+          </div>
         </div>
       </div>
     </div>

@@ -48,7 +48,7 @@ angular.module('ceaseless.controllers', [])
 
   $scope.cards = [
     {
-      title: '1 Thessalonians 5:16-18',
+      title: '(1 Thessalonians 5:16-18, ESV)',
       id: 1,
       content: 'Rejoice always, pray without ceasing, give thanks in all circumstances or this is God\'s will for you in Christ Jesus',
       template: 'templates/views/ScriptureCardView.html'
