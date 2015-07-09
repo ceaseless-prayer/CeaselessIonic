@@ -26,5 +26,10 @@ angular.module('ceaseless.controllers')
       'height': inlineNotesHeight + 'px',
       'width': '100%',
       'background-color':'rgba(0, 1, 47, 0.6)'
-    }
+    };
+
+    $scope.favoritedState = false;
+    $scope.toggleFavorite = function () {
+      $scope.favoritedState = !$scope.favoritedState;
+    };
   });
