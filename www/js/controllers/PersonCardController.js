@@ -21,5 +21,10 @@ angular.module('ceaseless.controllers')
     });
 
     $scope.cardStyles = angular.extend({}, cardHeight, background.cardBackground);
-
+    var inlineNotesHeight = window.innerHeight - 40 - 60 - 150 - 60;
+    $scope.inlineNotesStyle = {
+      'height': inlineNotesHeight + 'px',
+      'width': '100%',
+      'background-color':'rgba(0, 1, 47, 0.6)'
+    }
   });
