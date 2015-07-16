@@ -21,7 +21,9 @@ angular.module('ceaseless.controllers')
     });
 
     $scope.cardStyles = angular.extend({}, cardHeight, background.cardBackground);
-    var inlineNotesHeight = window.innerHeight - 40 - 60 - 150 - 60;
+    var profilePictureHeight = 150;
+    var titleHeight = 60;
+    var inlineNotesHeight = window.innerHeight - 40 - 60 - profilePictureHeight - titleHeight;
     $scope.inlineNotesStyle = {
       'height': inlineNotesHeight + 'px',
       'width': '100%',
