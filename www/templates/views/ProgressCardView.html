@@ -1,15 +1,16 @@
 <div class="inner-card" ng-style="cardStyles" ng-controller="ProgressCardController">
-
-
-  <!-- progress bar -->
-
-  <!-- text -->
-
-  <!-- next actions -->
-
-  <div class="card-content">
-    <div>{{card.title}}</div> <!-- Name ... button-->
-    <div></div> <!-- photo? -->
-    <div></div> <!-- card? -->
+  <div style="height:100%; background-color:'rgba(0, 1, 47, 0.4);'">
+    <div style="text-align:center;color:white;">
+      <!-- progress bar -->
+      <p style="font-size: 36px;margin-top:160px">{{ numberOfPeoplePrayedForThisRound }} / {{ totalPeople }}</p>
+      <p>people prayed for</p>
+      <button class="button button-light">Show More</button>
+    </div>
+    <p style="position: absolute; bottom: 52px; padding: 0 20px; text-align:center;">
+      &quot;Rejoice always, pray without ceasing,
+      give thanks in all circumstances
+      for this is God's will for you in Christ Jesus.&quot;<br/>
+      (1 Thessalonians 5:16-18 ESV)
+    </p>
   </div>
 </div>

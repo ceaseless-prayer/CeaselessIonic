@@ -22,4 +22,7 @@ angular.module('ceaseless.controllers')
 
     $scope.cardStyles = angular.extend({}, cardHeight, background.cardBackground);
 
+    $scope.totalPeople = 1102;
+    $scope.numberOfPeoplePrayedForThisRound = 134;
+
   });
