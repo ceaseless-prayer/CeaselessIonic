@@ -32,13 +32,13 @@ angular.module('ceaseless.controllers')
 
     $scope.$watch(function(){return background.blurred}, function(){
       $scope.blurredImageStyle['background-image'] = 'url('+background.blurred+')';
+    });
+
+    $scope.$watch(function(){return background.original}, function(){
       $scope.verseImageStyle['background-image'] = 'url('+background.original+')';
     });
 
     $scope.cardHeightStyle = cardHeight;
-
-    //$scope.verseImage = background.original;
-    //$scope.blurredImage = background.blurred;
 
     $scope.showShareDialog = function () {
       window.socialmessage.send({"text":"hello world"});
