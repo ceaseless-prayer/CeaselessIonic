@@ -89,7 +89,7 @@ angular.module('ceaseless', ['ionic', 'ceaseless.controllers', 'ceaseless.servic
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/people');
+  $urlRouterProvider.otherwise('/app/daily');
 })
 .config( [
   '$compileProvider',
