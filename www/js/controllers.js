@@ -37,20 +37,20 @@ angular.module('ceaseless.controllers', [])
     }, 1000);
   };
 
-  $scope.$watch(function(){return background.styles['background-image']}, function(){
+  $scope.$watch(function(){background.blurred}, function(){
     $scope.backgroundStyles = background.styles;
   });
 
   $scope.backgroundStyles = background.styles;
 })
 
-.controller('DailyCtrl', function($scope, $state, $ionicPlatform, $ionicSlideBoxDelegate) {
-
+.controller('DailyCtrl', function($scope, $state, $ionicPlatform, $ionicSlideBoxDelegate, scripture) {
+  var votd = scripture();
   $scope.cards = [
     {
-      title: '(1 Thessalonians 5:16-18, ESV)',
+      title: votd.citation,
       id: 1,
-      content: 'Rejoice always, pray without ceasing, give thanks in all circumstances or this is God\'s will for you in Christ Jesus',
+      content: votd.text,
       template: 'templates/views/ScriptureCardView.html'
     },
     {
@@ -79,31 +79,35 @@ angular.module('ceaseless.controllers', [])
     }
   ];
 
+  function getRandomIntInclusive(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
   $ionicPlatform.ready( function() {
     if (!navigator.contacts) {
-      console.log('Cordova contacts not available.')
+      console.log('Cordova contacts not available.');
     } else {
-      var options = new ContactFindOptions();
-      options.multiple = true;
-      options.filter = "Chris";
-      navigator.contacts.find(['displayName', 'name', 'photos'], function (contacts) {
-        // On success callback function. This will return an array of contacts.
-        var ii = [1, 2, 3];
-        angular.forEach(ii, function (i) {
-          if(contacts[i*7].name) {
-            $scope.cards[i].title = contacts[i*7].name.formatted;
+      // TODO need a cross platform way to handle this.
+      var alphabet = ['Natasha Lim','Tiffany Lim','Shanna Larson'];
+      angular.forEach(alphabet, function (l, i) {
+        var options = new ContactFindOptions();
+        options.multiple = true;
+        options.filter = l;
+        navigator.contacts.find(['displayName', 'name', 'photos'], function (contacts) {
+          if(contacts[0].name) {
+            $scope.cards[i+1].title = contacts[0].name.formatted;
           }
 
-          if(contacts[i*7].photos) {
-            $scope.cards[i].photoProfile = contacts[i*7].photos[0].value;
+          if(contacts[0].photos) {
+            console.log('# of photos', contacts[0].photos.length);
+            $scope.cards[i+1].photoProfile = contacts[0].photos[0].value;
           } else {
-            var givenName = contacts[i*7].name.givenName || '';
-            var familyName = contacts[i*7].name.familyName || '';
-            $scope.cards[i].initials = givenName.substring(0,1) + familyName.substring(0,1);
+            var givenName = contacts[0].name.givenName || '';
+            var familyName = contacts[0].name.familyName || '';
+            $scope.cards[i+1].initials = givenName.substring(0,1) + familyName.substring(0,1);
           }
-        });
-
-      }, undefined, options);
+        }, undefined, options);
+      });
     }
   });
 
