@@ -28,7 +28,7 @@ angular.module('ceaseless.services')
          return $cordovaFile.checkFile(cordova.file.cacheDirectory, CURRENT)
                  .then(setupBackgroundImage, function (error) {
                   console.log(JSON.stringify(error));
-                  setupBackgroundImage();
+                  return setupBackgroundImage();
                  });
       }
     };
@@ -37,7 +37,6 @@ angular.module('ceaseless.services')
     var img = new Image();
 
     $ionicPlatform.ready(function () {
-      result.refresh();
       useNewBackgroundImage()
         .then(fetchNextBackgroundImage);
     });
@@ -48,12 +47,13 @@ angular.module('ceaseless.services')
       if (dynamicImage) {
         console.log('changing the image');
         config.src = cordova.file.cacheDirectory + CURRENT;
-        result.original = config.src;
+        result.original = cordova.file.cacheDirectory + CURRENT;
       }
 
       img.onload = setupBlurredImage;
       img.crossOrigin = '';
       img.src = config.src;
+      return true;
     }
 
     function generateBackgroundImageCss(url) {
@@ -105,13 +105,22 @@ angular.module('ceaseless.services')
             console.log('checking for next file');
             return $cordovaFile.checkFile(cordova.file.cacheDirectory, NEXT);
         };
-        var checkCurrent = function () {
+        var checkCurrent = function (hasNext) {
             console.log('checking for current file');
-            return $cordovaFile.checkFile(cordova.file.cacheDirectory, CURRENT);
+            if(hasNext) {
+              return $cordovaFile.checkFile(cordova.file.cacheDirectory, CURRENT);
+            } else {
+              return false;
+            }
         };
-        var cleanUpCurrentAndUpdate = function () {
+
+        var cleanUpCurrentAndUpdate = function (hasCurrent) {
             console.log('cleaning up current file');
-            return $cordovaFile.removeFile(cordova.file.cacheDirectory, CURRENT).then(updateBackgroundImage);
+            if(hasCurrent) {
+              return $cordovaFile.removeFile(cordova.file.cacheDirectory, CURRENT).then(updateBackgroundImage);
+            } else {
+              return updateBackgroundImage();
+            }
         };
         var updateBackgroundImage = function () {
             console.log('copying over background file');
@@ -119,9 +128,9 @@ angular.module('ceaseless.services')
         };
 
         return checkNext()
-        .then(checkCurrent)
-        .then(cleanUpCurrentAndUpdate, updateBackgroundImage)
-        .then(result.refresh, result.refresh);
+          .then(checkCurrent)
+          .then(cleanUpCurrentAndUpdate)
+          .then(result.refresh);
     }
 
     function fetchNextBackgroundImage() {
