@@ -20,7 +20,7 @@ angular.module('ceaseless.controllers')
       $scope.cardStyles['background-image'] = background.cardBackground['background-image'];
     });
 
-    $scope.cardStyles = angular.extend({}, cardHeight, background.cardBackground);
+    $scope.cardStyles = angular.extend({}, cardHeight.style, background.cardBackground);
     var profilePictureHeight = 150;
     var titleHeight = 60;
     var inlineNotesHeight = window.innerHeight - 40 - 60 - profilePictureHeight - titleHeight;

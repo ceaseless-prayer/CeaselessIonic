@@ -1,24 +1,34 @@
 angular.module('ceaseless.services')
-  .factory('scripture', function () {
-
-    // local cache of verse
+  .factory('scripture', function ($http, ceaselessServiceUrls) {
+    // local cache of verses
     var verses = [
     {
-      citation: "1 Thessalonians 5:16-18 ESV",
-      text: "Rejoice always, pray continually, give thanks in all circumstances for this is God's will for you in Christ Jesus"
-    },
-    {
-      citation: "James 5:16 ESV",
-      text: "Confess your sins to one another, pray for one another and so be healed."
-    },
-    {
-      citation: "Matthew 7",
-      text: "Ask and it will be given to you. Seek and you will find. Knock and the door will be open for you."
+      citation: "Matthew 21:22",
+      text: "And whatever you ask in prayer, you will receive, if you have faith.",
+      shareLink: ceaselessServiceUrls.defaultScriptureShareUrl
     }];
 
-    return function () {
+    function getNewScripture() {
+      $http.get(ceaselessServiceUrls.votd).
+              success(function(data, status, headers, config) {
+                if (data.book) {
+                  $http.post(ceaselessServiceUrls.getScripture, data)
+                    .success(function(data, status, headers, config) {
+                      // TODO configure the right bible for the local language
+                      data.shareLink = "http://www.bible.is/ENGESV/" +
+                        data.book + "/" + data.chapter + "#" + data.verse_start;
+                      verses.push(data);
+                    });
+                }
+              });
+    }
+
+    var pickScripture = function () {
       var votd = _.sample(verses);
-      console.log(votd);
+      votd.refresh = getNewScripture;
+      votd.getScripture = pickScripture;
       return votd;
-    };
-  })
+    }
+
+    return pickScripture;
+  });

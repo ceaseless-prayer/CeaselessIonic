@@ -3,7 +3,12 @@ angular.module('ceaseless.services', [])
     var navHeight = 40;
     var pagerHeight = 60;
     var cardHeight = window.innerHeight - navHeight - pagerHeight;
-    return {height: cardHeight + 'px'};
+
+    var result = {
+      style: {height: cardHeight + 'px'},
+      height: cardHeight
+    };
+    return result;
   })
   .factory('ceaselessServiceUrls', function () {
     var urls = {

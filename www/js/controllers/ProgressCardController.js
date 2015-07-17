@@ -20,7 +20,7 @@ angular.module('ceaseless.controllers')
       $scope.cardStyles['background-image'] = background.cardBackground['background-image'];
     });
 
-    $scope.cardStyles = angular.extend({}, cardHeight, background.cardBackground);
+    $scope.cardStyles = angular.extend({}, cardHeight.style, background.cardBackground);
 
     $scope.totalPeople = 1102;
     $scope.numberOfPeoplePrayedForThisRound = 134;

@@ -51,6 +51,7 @@ angular.module('ceaseless.controllers', [])
       title: votd.citation,
       id: 1,
       content: votd.text,
+      extra: votd,
       template: 'templates/views/ScriptureCardView.html'
     },
     {
