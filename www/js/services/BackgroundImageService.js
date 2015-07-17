@@ -12,7 +12,7 @@ angular.module('ceaseless.services')
     // initialize the result
     var result = {
       original: config.src,
-      blurred: config.src,
+      blurred: '',
       styles: {
         'background-image':'url()',
         'background-repeat':'no-repeat',
