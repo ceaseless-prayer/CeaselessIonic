@@ -69,6 +69,16 @@ angular.module('ceaseless', ['ionic', 'ceaseless.controllers', 'ceaseless.servic
     }
   })
 
+  .state('app.note', {
+    url: '/journal/:noteId',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/addNote.html',
+        controller: 'NoteCtrl'
+      }
+    }
+  })
+
   .state('app.people', {
     url: '/people',
     views: {

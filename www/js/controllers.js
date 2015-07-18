@@ -172,26 +172,32 @@ angular.module('ceaseless.controllers', [])
 
     $scope.notes = [
       {
+        id:1,
         peopleTagged:['Chris','Lim'],
         content: 'This is a note. When will God\'s grace come.'
       },
       {
+        id:2,
         peopleTagged:['Natasha','Lim'],
         content: 'This is a note. When will God\'s grace come.'
       },
       {
+        id:3,
         peopleTagged:['Tiffany','Lim'],
         content: 'This is a note. When will God\'s grace come.'
       },
       {
+        id:4,
         peopleTagged:['S','L'],
         content: 'This is a note. When will God\'s grace come.'
       },
       {
+        id:5,
         peopleTagged:['Please','Thank you'],
         content: 'Why are you afraid?'
       },
       {
+        id:6,
         peopleTagged:['Again','And Again'],
         content: 'Why are you afraid?'
       }
