@@ -22,7 +22,8 @@ angular.module('ceaseless.services', [])
   })
   .factory('AppConstants', function () {
     var constants = {
-        backgroundFileName: 'currentBackgroundImage'
+        backgroundFileName: 'currentBackgroundImage',
+        databaseName: 'ceaseless.db'
     };
     return constants;
   });

@@ -142,70 +142,36 @@ angular.module('ceaseless.controllers', [])
 .controller('PlaylistCtrl', function($scope, $stateParams) {
 })
 
-.controller('JournalCtrl', function($scope, $ionicModal, background) {
-    $scope.now = new Date();
+.controller('JournalCtrl', function($scope, $state, notes, background) {
     $scope.backgroundStyles = background.styles;
-
-    // Create the note editor modal that we will use later
-    $ionicModal.fromTemplateUrl('templates/addNote.html', {
-      scope: $scope
-    }).then(function(modal) {
-      $scope.modal = modal;
-    });
-
-    // Triggered in the login modal to close it
-    $scope.cancelNote = function() {
-      $scope.modal.hide();
-    };
 
     // Open the login modal
     $scope.addNote = function() {
-      $scope.modal.show();
-    };
-
-    // Perform the login action when the user submits the login form
-    $scope.saveNote = function() {
-      console.log('Saving note', $scope.noteData);
-
-      // save note here.
+      $state.go('app.note');
     };
 
     $scope.notes = [
       {
-        id:1,
-        peopleTagged:['Chris','Lim'],
-        content: 'This is a note. When will God\'s grace come.'
-      },
-      {
         id:2,
         peopleTagged:['Natasha','Lim'],
-        content: 'This is a note. When will God\'s grace come.'
+        text: 'This is a note. When will God\'s grace come.'
       },
       {
         id:3,
         peopleTagged:['Tiffany','Lim'],
-        content: 'This is a note. When will God\'s grace come.'
+        text: 'This is a note. When will God\'s grace come.'
       },
       {
         id:4,
         peopleTagged:['S','L'],
-        content: 'This is a note. When will God\'s grace come.'
-      },
-      {
-        id:5,
-        peopleTagged:['Please','Thank you'],
-        content: 'Why are you afraid?'
-      },
-      {
-        id:6,
-        peopleTagged:['Again','And Again'],
-        content: 'Why are you afraid?'
+        text: 'This is a note. When will God\'s grace come.'
       }
     ];
 
-    $scope.noteData = {
-      contents: 'This is a test note'
-    };
+    notes.listNotes().then(function (loadedNotes) {
+      $scope.notes = loadedNotes.concat($scope.notes);
+    });
+
 
     // list management
     $scope.shouldShowDelete = false;

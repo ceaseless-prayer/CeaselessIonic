@@ -14,7 +14,7 @@
                 class="note-item item-thumbnail-left" href="#/app/journal/{{note.id}}">
 
         <img ng-src="{{note.img}}">
-        <h2>{{note.content}}</h2>
+        <h2>{{note.text.substring(0,150)}}</h2>
         <p>{{note.peopleTagged}}</p>
         <ion-option-button class="button-positive"
                            ng-click="share(note)">

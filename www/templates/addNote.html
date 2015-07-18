@@ -1,13 +1,10 @@
-<ion-modal-view class="note-modal-container" ng-style="backgroundStyles">
-  <ion-header-bar class="ceaseless-bar-dark">
-    <div class="buttons">
-      <button class="button button-clear" ng-click="cancelNote()">Close</button>
-    </div>
-    <h1 class="title">{{now | date:'short'}}</h1>
-    <div class="buttons">
-      <button class="button button-clear" ng-click="saveNote()">Save</button>
-    </div>
-  </ion-header-bar>
+<ion-view ng-style="backgroundStyles">
+  <ion-nav-title>
+    {{title}}
+  </ion-nav-title>
+  <ion-nav-buttons side="right">
+    <button class="button button-clear" ng-click="saveNote()">Save</button>
+  </ion-nav-buttons>
   <ion-content scroll="false" class="people-tagger">
     <label class="item item-input">
       <input type="text" placeholder="Tag your friends" ng-model="noteData.peopleTagged">
@@ -18,10 +15,10 @@
       <div class="table-row">
         <div class="table-cell body-content-outer-wrapper">
           <div class="body-content-inner-wrapper">
-            <textarea class="body-content note-body">{{noteData.id}} {{noteData.contents}}</textarea>
+            <textarea class="body-content note-body" ng-model="noteData.text"></textarea>
           </div>
         </div>
       </div>
     </div>
   </ion-content>
-</ion-modal-view>
+</ion-view>
