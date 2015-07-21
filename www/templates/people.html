@@ -6,12 +6,15 @@
     <div>{{contacts.length}} total contacts</div>
     <button class="button" ng-click="getContactList()">Get My Contacts</button>
     <ion-list>
-      <ion-item class="item item-avatar" quick-ng-repeat="contact in contacts" quick-repeat-list="contacts">
-        <img ng-src="{{contact.photos[0].value}}"/>
+      <ion-item class="item item-avatar" collection-repeat="contact in contacts">
+        <img ng-src="{{contact.profilePicture}}" ng-show="contact.profilePicture"/>
+        <div class="item-image" ng-hide="contact.profilePicture" style="background-color:rgba(0, 1, 47, 0.8); text-align:center; color:white;font-size:8px;">
+          {{contact.initials}}
+        </div>
         <h2>{{contact.displayName}}</h2>
         <p>{{contact.name.formatted}}</p>
         <p>{{contact.profilePicture}}</p>
-        <p>{{contact.photos[0].value}}</p>
+        <p>{{contact.initials}}</p>
       </ion-item>
     </ion-list>
   </ion-content>

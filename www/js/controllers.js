@@ -44,7 +44,8 @@ angular.module('ceaseless.controllers', [])
   $scope.backgroundStyles = background.styles;
 })
 
-.controller('DailyCtrl', function($scope, $state, $ionicPlatform, $ionicSlideBoxDelegate, scripture) {
+.controller('DailyCtrl', function($scope, $state, $ionicPlatform, $ionicSlideBoxDelegate, scripture, PeopleService, background) {
+  $scope.backgroundStyles = background.styles;
   var votd = scripture.pick();
   $scope.cards = [
     {
@@ -101,11 +102,9 @@ angular.module('ceaseless.controllers', [])
 
           if(contacts[0].photos) {
             console.log('# of photos', contacts[0].photos.length);
-            $scope.cards[i+1].photoProfile = contacts[0].photos[0].value;
+            $scope.cards[i+1].profilePicture = contacts[0].photos[0].value;
           } else {
-            var givenName = contacts[0].name.givenName || '';
-            var familyName = contacts[0].name.familyName || '';
-            $scope.cards[i+1].initials = givenName.substring(0,1) + familyName.substring(0,1);
+            $scope.cards[i+1].initials = PeopleService.getInitialsForContact(contacts[0]);
           }
         }, undefined, options);
       });

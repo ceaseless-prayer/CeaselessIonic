@@ -9,12 +9,12 @@
         <i style="display:block; margin:25px 0;" class="ion-paper-airplane"></i>
         <i style="display:block; margin:25px 0;" class="ion-edit"></i>
       </div>
-      <div style="height:168px; margin:0px auto; padding-top:30px; text-align: center;" ng-hide="card.photoProfile">
+      <div style="height:168px; margin:0px auto; padding-top:30px; text-align: center;" ng-hide="card.profilePicture">
         <div style="background-color:rgba(0, 1, 47, 0.8); margin:0px auto; width: 150px; height:150px; padding:20px; border-radius: 6px;">
           <p style="font-size: 60px; margin: 45px auto;">{{card.initials}}</p>
         </div>
       </div>
-      <img ng-src="{{card.photoProfile}}" ng-show="card.photoProfile" style="border-radius: 6px; margin: 30px auto; min-width:150px; min-height:150px;"/>
+      <img ng-src="{{card.profilePicture}}" ng-show="card.profilePicture" style="border-radius: 6px; margin: 30px auto; min-width:150px; min-height:150px;"/>
     </div>
     <div ng-style="inlineNotesStyle">
       <ul class="list">

@@ -6,7 +6,7 @@
     <a ng-click="openJournal()" class="button button-icon button-clear ion-ios-bookmarks-outline">
     </a>
   </ion-nav-buttons>
-  <ion-content scroll="false">
+  <ion-content scroll="false" ng-style="backgroundStyles">
     <ion-slide-box class="daily-card-container" ng-hide="transitioning" on-slide-changed="slideHasChanged($index)">
       <ion-slide class="card-view" ng-repeat="card in cards">
         <ng-include src="card.template"></ng-include>

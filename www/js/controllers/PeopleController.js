@@ -1,6 +1,6 @@
 angular.module('ceaseless.controllers')
 
-  .controller('PeopleCtrl', function($scope, background, $ionicPlatform, $cordovaContacts) {
+  .controller('PeopleCtrl', function($scope, background, $ionicPlatform, $cordovaContacts, PeopleService) {
     $scope.userMsg = 'waiting for platform readiness';
     $scope.contacts = [];
     $scope.backgroundStyles = background.styles;
@@ -18,24 +18,20 @@ angular.module('ceaseless.controllers')
             var contacts = _.filter(result, function (c) {
               return c.name.formatted !== '';
             });
-            //for(var i in contacts) {
-            //  var c = contacts[i];
-            //  if(c.photos.length > 0) {
-            //    window.resolveLocalFileSystemURL(c.photos[0].value,
-            //      function (fileEntry) {
-            //        contacts[i].profilePicture = fileEntry.fullPath;
-            //      }, function () {
-            //
-            //      });
-            //  }
-            //}
+
+            for(var i in contacts) {
+              var c = contacts[i];
+              if(c.photos) {
+                c.profilePicture = c.photos[0].value;
+              } else {
+                c.initials = PeopleService.getInitialsForContact(c);
+              }
+            }
 
             $scope.userMsg = '';
             $scope.contacts = contacts;
-
-            alert($scope.contacts.length);
           }, function(error) {
-            alert("ERROR: " + error);
+            console.log('ERROR', error);
             $scope.userMsg = error;
           });
         };

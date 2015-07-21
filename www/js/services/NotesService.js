@@ -1,6 +1,6 @@
 angular.module('ceaseless.services')
   .factory('notes', function ($cordovaSQLite, AppConstants, ceaselessServiceUrls) {
-  console.log(AppConstants.databaseName);
+
     var db = $cordovaSQLite.openDB(AppConstants.databaseName);
     db.transaction(function (tx) {
       tx.executeSql('CREATE TABLE IF NOT EXISTS notes (id integer primary key, text text, createDate text, lastUpdatedDate text)');

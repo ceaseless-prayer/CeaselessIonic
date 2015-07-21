@@ -105,6 +105,7 @@ angular.module('ceaseless.services')
             console.log('checking for next file');
             return $cordovaFile.checkFile(cordova.file.cacheDirectory, NEXT);
         };
+
         var checkCurrent = function (hasNext) {
             console.log('checking for current file');
             if(hasNext) {
@@ -122,14 +123,21 @@ angular.module('ceaseless.services')
               return updateBackgroundImage();
             }
         };
+
+        var initializeDynamicBackgrounds = function () {
+          console.log('attempting to initialize dynamic background images');
+          result.refresh()
+            .then(fetchNextBackgroundImage);
+        };
+
         var updateBackgroundImage = function () {
             console.log('copying over background file');
             return $cordovaFile.copyFile(cordova.file.cacheDirectory, NEXT, cordova.file.cacheDirectory, CURRENT);
         };
 
         return checkNext()
-          .then(checkCurrent)
-          .then(cleanUpCurrentAndUpdate)
+          .then(checkCurrent, initializeDynamicBackgrounds)
+          .then(cleanUpCurrentAndUpdate, updateBackgroundImage)
           .then(result.refresh);
     }
 
