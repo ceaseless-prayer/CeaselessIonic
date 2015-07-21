@@ -81,10 +81,8 @@ angular.module('ceaseless.controllers')
       $scope.verseImageStyle['background-image'] = 'url('+background.original+')';
     });
 
-    var votd = scripture();
     $scope.refresh = function () {
-      votd.refresh();
-      votd = votd.getScripture();
+      votd = scripture.pop();
       $scope.card.title = votd.citation;
       $scope.card.content = votd.text;
     };

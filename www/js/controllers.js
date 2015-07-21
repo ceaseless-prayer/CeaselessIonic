@@ -45,7 +45,7 @@ angular.module('ceaseless.controllers', [])
 })
 
 .controller('DailyCtrl', function($scope, $state, $ionicPlatform, $ionicSlideBoxDelegate, scripture) {
-  var votd = scripture();
+  var votd = scripture.pick();
   $scope.cards = [
     {
       title: votd.citation,
