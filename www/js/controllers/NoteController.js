@@ -1,9 +1,9 @@
 angular.module('ceaseless.controllers')
-  .controller('NoteCtrl', function($scope, $filter, $stateParams, notes, background, $ionicPlatform, $cordovaContacts) {
+  .controller('NoteCtrl', function($scope, $filter, $stateParams, $ionicHistory, notes, background, $ionicPlatform, $cordovaContacts) {
 
     //prototype note data
     $scope.noteData = {
-      text: 'This is a test note',
+      text: '',
       lastUpdatedDate: new Date(),
       peopleTagged: []
     };
@@ -21,5 +21,6 @@ angular.module('ceaseless.controllers')
 
     $scope.saveNote = function() {
       notes.saveNote($scope.noteData);
+      $ionicHistory.goBack();
     };
   });
