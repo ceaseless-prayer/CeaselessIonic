@@ -1,21 +1,78 @@
-<ion-view view-title="People">
-  <ion-content overflow-scroll="true" ng-style="backgroundStyles">
-    <h1>People *</h1>
-    <div>This is where you can do stuff with your contacts</div>
-    <div>{{userMsg}}</div>
-    <div>{{contacts.length}} total contacts</div>
-    <button class="button" ng-click="getContactList()">Get My Contacts</button>
-    <ion-list>
-      <ion-item class="item item-avatar" collection-repeat="contact in contacts">
-        <img ng-src="{{contact.profilePicture}}" ng-show="contact.profilePicture"/>
-        <div class="item-image" ng-hide="contact.profilePicture" style="background-color:rgba(0, 1, 47, 0.8); text-align:center; color:white;font-size:8px;">
-          {{contact.initials}}
-        </div>
-        <h2>{{contact.displayName}}</h2>
-        <p>{{contact.name.formatted}}</p>
-        <p>{{contact.profilePicture}}</p>
-        <p>{{contact.initials}}</p>
-      </ion-item>
-    </ion-list>
+<ion-view has-tabs="true" has-subheader="true">
+  <ion-nav-title>People</ion-nav-title>
+  <ion-nav-buttons side="right">
+    <button class="button button-icon button-clear ion-android-search">
+    </button>
+    &nbsp;
+    <button ng-click="openMenu()" class="button button-icon button-clear ion-android-more-vertical">
+    </button>
+  </ion-nav-buttons>
+  <div class="tabs-striped tabs-top">
+    <div class="tabs">
+      <a class="tab-item">Active</a>
+      <a class="tab-item">Removed</a>
+    </div>
+  </div>
+  <ion-content>
+    <div style="color:black">
+
+      This is content
+      <p>What happens here?</p>
+      <p>continue to make it deeper?</p>
+      <p>I am confused why this isn't showing up as epxected</p>
+      <p>Why it hides.</p>
+
+    </div>
+    <div>
+      <button class="button" ng-click="getContactList()">Get My Contacts</button>
+      <div>{{userMsg}}</div>
+    </div>
   </ion-content>
+  <ion-tabs class="tabs-top">
+    <ion-tab title="Active">
+      <ion-content has-bouncing="true">
+        <div overflow-scroll="true" style="margin-top:100px;color:black">
+          <button class="button" ng-click="getContactList()">Get My Contacts</button>
+          <button class="button" ng-click="initContacts()">init contacts db</button>
+          <button class="button" ng-click="getContactsFromDB()">Get DB Contacts</button>
+          <div style="color:black">{{userMsg}}</div>
+
+          <ion-list show-delete="shouldShowDelete" can-swipe="listCanSwipe">
+            <ion-item class="item item-avatar" collection-repeat="contact in contacts">
+              <ion-delete-button class="ion-minus-circled"></ion-delete-button>
+              <img ng-src="{{contact.profilePicture}}" ng-show="contact.profilePicture"/>
+              <div class="item-image" ng-hide="contact.profilePicture" style="background-color:rgba(0, 1, 47, 0.8); text-align:center; color:white;font-size:14px;padding-top:10px;">
+                {{contact.initials}}
+              </div>
+              <h2 style="color:black">{{contact.displayName}}</h2>
+              <!--<i class="icon ion-chevron-right"></i>-->
+              <ion-option-button class="button-positive">
+                <span style="font-size:24px;">
+                  <i class="icon ion-android-favorite-outline"></i>
+                </span>
+              </ion-option-button>
+              <ion-option-button class="button-assertive">Edit</ion-option-button>
+            </ion-item>
+          </ion-list>
+
+        </div>
+      </ion-content>
+    </ion-tab>
+    <ion-tab title="Removed">
+      <div style="margin-top:100px;color:black">
+
+        This is content
+        <p>What happens here?</p>
+        <p>continue to make it deeper?</p>
+        <p>I am confused why this isn't showing up as epxected</p>
+        <p>Why it hides.</p>
+
+      </div>
+      <div>
+        <button class="button" ng-click="getContactList()">Get My Contacts</button>
+        <div>{{userMsg}}</div>
+      </div>
+    </ion-tab>
+  </ion-tabs>
+
 </ion-view>
