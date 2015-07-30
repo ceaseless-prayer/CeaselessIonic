@@ -8,6 +8,8 @@
     "quick-ngrepeat": "*",
     "famous-angular": "~0.5.2",
     "ngCordova": "~0.1.17-alpha",
-    "lodash": "~3.9.3"
+    "lodash": "~3.9.3",
+    "ion-alpha-scroll": "~0.1.3",
+    "node-uuid": "~1.4.3"
   }
 }
