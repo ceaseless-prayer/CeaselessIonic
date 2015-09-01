@@ -1,5 +1,5 @@
 angular.module('ceaseless.services')
-  .factory('background', function ($ionicPlatform, $cordovaFile, $http, ceaselessServiceUrls, $cordovaFileTransfer) {
+  .factory('background', function ($ionicPlatform, $cordovaFile, $http, ceaselessServiceUrls, $rootScope, $cordovaFileTransfer) {
     var CURRENT = 'currentBackgroundImage';
     var NEXT = 'nextBackgroundImage';
     var DOWNLOADING = 'downloadingBackgroundImage';
@@ -14,9 +14,10 @@ angular.module('ceaseless.services')
       original: config.src,
       blurred: '',
       styles: {
-        'background-image':'url()',
-        'background-repeat':'no-repeat',
-        'background-size': 'cover'
+        'background-image': 'url()',
+        'background-repeat': 'no-repeat',
+        'background-size': 'cover',
+        'background-color': 'rgb(102, 103, 149)'
       },
       cardBackground: {
         'background-image':'url()',
@@ -92,12 +93,62 @@ angular.module('ceaseless.services')
       document.body.appendChild(canvas);
       var context = canvas.getContext('2d');
       context.drawImage(img, 0, 0, config.w, config.h);
+      var imageData = getCanvasImageData(canvasId, 0, 0, config.w, config.h);
 
-      boxBlurCanvasRGBA(canvasId, 0, 0, config.w, config.h, 30, 2);
-      result.blurred = canvas.toDataURL();
-      result.styles['background-image'] = generateBackgroundImageCss(result.blurred);
-      result.cardBackground['background-image'] = 'url('+result.blurred+')';
-      console.log('blur complete');
+      var worker = new Worker('lib/imageBlur.js');
+      worker.onmessage = function (e) {
+        putCanvasImageData(canvasId, e.data.imageData, 0, 0);
+        result.blurred = canvas.toDataURL();
+        result.styles['background-image'] = generateBackgroundImageCss(result.blurred);
+        result.cardBackground['background-image'] = 'url('+result.blurred+')';
+        console.log('blur complete');
+      };
+      worker.postMessage({
+        imageData: imageData,
+        top_x: 0,
+        top_y: 0,
+        width: config.w,
+        height: config.h,
+        radius: 30,
+        iterations: 2
+      });
+    }
+
+    function getCanvasImageData (id, top_x, top_y, width, height) {
+      var canvas  = document.getElementById( id );
+    	var context = canvas.getContext('2d');
+    	var imageData;
+
+    	try {
+    	  try {
+    		  imageData = context.getImageData( top_x, top_y, width, height );
+    	  } catch(e) {
+          // NOTE: this part is supposedly only needed if you want to work with local files
+          // so it might be okay to remove the whole try/catch block and just use
+          // imageData = context.getImageData( top_x, top_y, width, height );
+          try {
+            if (typeof(netscape) !== 'undefined') {
+              netscape.security.PrivilegeManager.enablePrivilege('UniversalBrowserRead');
+            }
+            imageData = context.getImageData( top_x, top_y, width, height );
+          } catch(e) {
+            alert('Cannot access local image');
+            throw new Error('unable to access local image data: ' + e);
+            return;
+          }
+    	  }
+    	} catch(e) {
+    	  alert('Cannot access image');
+    	  throw new Error('unable to access image data: ' + e);
+    	  return;
+    	}
+    	return imageData;
+    }
+
+    function putCanvasImageData (id, imageData, top_x, top_y) {
+      var canvas  = document.getElementById( id );
+      var context = canvas.getContext('2d');
+      context.putImageData( imageData, top_x, top_y );
     }
 
     function useNewBackgroundImage() {
@@ -138,7 +189,10 @@ angular.module('ceaseless.services')
         return checkNext()
           .then(checkCurrent, initializeDynamicBackgrounds)
           .then(cleanUpCurrentAndUpdate, updateBackgroundImage)
-          .then(result.refresh);
+          .then(result.refresh)
+          .then(function () {
+            $rootScope.$broadcast('backgroundServiceReady');
+          });
     }
 
     function fetchNextBackgroundImage() {
